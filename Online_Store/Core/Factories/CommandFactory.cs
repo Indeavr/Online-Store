@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using Ninject;
+using Online_Store.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +11,19 @@ namespace Online_Store.Core.Factories
 {
     public class CommandFactory : ICommandFactory
     {
+        private readonly IKernel kernel;
 
+        public CommandFactory(IKernel kernel)
+        {
+            Guard.WhenArgument(kernel, "kernel").IsNull().Throw();
+
+            this.kernel = kernel;
+        }
+
+        public ICommand CreateCommand(string commandName)
+        {
+            return this.kernel.Get<ICommand>(commandName);
+        }
     }
 }
  

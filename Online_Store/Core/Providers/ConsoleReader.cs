@@ -10,7 +10,7 @@ namespace Online_Store.Core.Providers
     {
         public string ReadLine()
         {
-            throw new NotImplementedException();
+            return Console.ReadLine();
         }
     }
 }

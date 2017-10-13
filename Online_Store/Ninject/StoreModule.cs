@@ -1,7 +1,12 @@
 ﻿using Ninject.Modules;
+using Online_Store.Commands;
+using Online_Store.Commands.UserCommands;
 using Online_Store.Core;
 using Online_Store.Core.Factories;
 using Online_Store.Core.Providers;
+using Online_Store.Core.Services;
+using Online_Store.Core.Services.User;
+using Online_Store.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +28,15 @@ namespace Online_Store.Ninject
             this.Bind<IModelFactory>().To<ModelFactory>().Named("ModelFactory");
 
             this.Bind<IEngine>().To<Engine>().InSingletonScope().Named("Engine");
+            this.Bind<IStoreContext>().To<StoreContext>().Named("context");
+
+            this.Bind<IUserService>().To<UserService>().Named("userService");
+            this.Bind<IPasswordSecurityHasher>().To<PasswordSecurityHasher>().Named("passwordHasher");
+
+
+            this.Bind<ICommand>().To<CreateUserCommand>().Named("createuser");
+            this.Bind<ICommand>().To<UserLoginCommand>().Named("login");
+            this.Bind<ICommand>().To<BecomeSellerCommand>().Named("becomeseller");
         }
     }
 }

@@ -1,10 +1,14 @@
+using Newtonsoft.Json;
+using Online_Store.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.IO;
+using System.Linq;
+
 namespace Online_Store.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<Online_Store.Data.StoreContext>
     {
         public Configuration()
@@ -27,6 +31,12 @@ namespace Online_Store.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //using (StreamReader r = new StreamReader(@"D:\Users\Donevski\Desktop\UserInfo.json"))
+            //{
+            //    string json = r.ReadToEnd();
+            //    var user = JsonConvert.DeserializeObject<User>(json);
+            //}
         }
     }
 }

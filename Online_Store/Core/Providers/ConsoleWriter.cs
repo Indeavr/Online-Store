@@ -10,12 +10,12 @@ namespace Online_Store.Core.Providers
     {
         public void Write(string text)
         {
-            throw new NotImplementedException();
+            Console.Write(text);
         }
 
         public void WriteLine(string text)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(text);
         }
     }
 }
