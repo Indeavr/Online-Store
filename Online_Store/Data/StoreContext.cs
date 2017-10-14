@@ -18,6 +18,5 @@ namespace Online_Store.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Seller> Sellers { get; set; }
-        public IDbSet<Product> Products { get; set; }
     }
 }
