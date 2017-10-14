@@ -1,0 +1,29 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Online_Store.Core.Services;
+using Online_Store.Core.Services.User;
+using Online_Store.Data;
+
+namespace Online_Store_Tests.Core.Services.User.UserServiceTests
+{
+    [TestClass]
+    public class GeneratePasswordHash_Should
+    {
+        [TestMethod]
+        public void CallHashMethod_WhenCalled()
+        {
+            //Arange
+            var hasherMock = new Mock<IPasswordSecurityHasher>();
+            var contextMock = new Mock<IStoreContext>();
+            string password = "test";
+
+            var userService = new UserService(hasherMock.Object, contextMock.Object);
+
+            //Act
+            userService.GeneratePasswordHash(password);
+
+            //Assert
+            hasherMock.Verify(x => x.Hash(password), Times.Once);
+        }
+    }
+}
