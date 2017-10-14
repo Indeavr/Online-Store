@@ -13,5 +13,7 @@ namespace Online_Store.Core.Services.User
         string GeneratePasswordHash(string password);
 
         bool ValidateCredentials(string username, string password);
+
+        bool CheckUsername(string username);
     }
 }

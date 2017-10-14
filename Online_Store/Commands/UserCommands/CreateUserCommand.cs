@@ -33,6 +33,11 @@ namespace Online_Store.Commands.UserCommands
             string username = parameters[0];
             string password = parameters[1];
 
+            if (userService.CheckUsername(username)) //if it returns true there is already a user with the username
+            {
+                return "Username is taken!";
+            }
+
             string hashedPassword = userService.GeneratePasswordHash(password);
             User user = factory.CreateUser(username, hashedPassword);
 

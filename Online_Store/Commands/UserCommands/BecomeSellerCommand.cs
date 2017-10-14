@@ -29,12 +29,17 @@ namespace Online_Store.Commands.UserCommands
 
         public override string Execute(IList<string> parameters)
         {
+            if (this.userService.LoggedUserId == -1)
+            {
+                return "You must Login First!";
+            }
+
+            if (this.context.Sellers.Any(i => i.UserId == this.userService.LoggedUserId))
+            {
+                return "You are already a Seller!";
+            }
+
             var seller =  this.factory.CreateSeller();
-
-
-            //var sql = string.Format("SELECT * FROM [MyDb].[dbo].[MyEntities] WHERE [ID] IN ({0})", this.context.loggedUserId);
-
-            //var result = this.context.Users.SqlQuery(sql)
 
             this.context.Users.SingleOrDefault(i => i.Id == this.userService.LoggedUserId).Seller = seller;
             this.context.SaveChanges();
