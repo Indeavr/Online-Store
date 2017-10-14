@@ -39,7 +39,7 @@ namespace Online_Store.Core.Services.User
         }
 
         // checks for personaly encrypted sign
-        public static bool IsHashSupported(string hashString)
+        public bool IsHashSupported(string hashString)
         {
             return hashString.Contains("$DoNeVsKiHASH$V1$");
         }

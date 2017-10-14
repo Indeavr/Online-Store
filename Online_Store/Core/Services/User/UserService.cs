@@ -22,6 +22,7 @@ namespace Online_Store.Core.Services
 
             this.context = context;
             this.hasher = hasher;
+            this.LoggedUserId = -1;
         }
 
         public int LoggedUserId { get; set; }
