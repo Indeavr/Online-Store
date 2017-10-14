@@ -2,6 +2,7 @@
 using Online_Store.Core.Factories;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
+using Online_Store.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,15 @@ namespace Online_Store.Commands.UserCommands
 
         public string Execute(IList<string> parameters)
         {
-            // var seller =  this.factory.CreateSeller(this.context.loggedUserId);
+            var seller =  this.factory.CreateSeller();
+
+
+            //var sql = string.Format("SELECT * FROM [MyDb].[dbo].[MyEntities] WHERE [ID] IN ({0})", this.context.loggedUserId);
+
+            //var result = this.context.Users.SqlQuery(sql)
+
+            this.context.Users.SingleOrDefault(i => i.Id == this.userService.LoggedUserId).Seller = seller;
+            this.context.SaveChanges();
 
             return $"Congrats, you can now Sell Products!";
         }

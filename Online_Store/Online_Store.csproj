@@ -58,9 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\UserCommands\BecomeSellerCommand.cs" />
     <Compile Include="Commands\UserCommands\CreateUserCommand.cs" />
+    <Compile Include="Commands\UserCommands\Logout.cs" />
     <Compile Include="Commands\UserCommands\UserLoginCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\CommandFactory.cs" />
@@ -88,6 +90,14 @@
     <Compile Include="Migrations\201710132051441_Seller_Initial.Designer.cs">
       <DependentUpon>201710132051441_Seller_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710141118356_UserSellerRelation.cs" />
+    <Compile Include="Migrations\201710141118356_UserSellerRelation.Designer.cs">
+      <DependentUpon>201710141118356_UserSellerRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710141136163_UserSeller.cs" />
+    <Compile Include="Migrations\201710141136163_UserSeller.Designer.cs">
+      <DependentUpon>201710141136163_UserSeller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\Seller.cs" />
@@ -106,6 +116,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710132051441_Seller_Initial.resx">
       <DependentUpon>201710132051441_Seller_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141118356_UserSellerRelation.resx">
+      <DependentUpon>201710141118356_UserSellerRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141136163_UserSeller.resx">
+      <DependentUpon>201710141136163_UserSeller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

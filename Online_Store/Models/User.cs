@@ -9,6 +9,10 @@ namespace Online_Store.Models
 {
     public class User
     {
+        public User()
+        {
+        }
+
         public User(string username, string hashedPassword)
         {
             this.Username = username;
@@ -27,6 +31,8 @@ namespace Online_Store.Models
         // public virtual Cart Cart { get; set; }
 
         // public virtual Order Order { get; set; }
+
+        //public int SellerId { get; set; }
 
         public virtual Seller Seller { get; set; }
     }

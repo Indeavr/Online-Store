@@ -16,8 +16,7 @@ namespace Online_Store.Data
 
         }
 
-        public int loggedUserId { get; set; }
-
         public DbSet<User> Users { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
     }
 }

@@ -14,9 +14,8 @@ namespace Online_Store.Models
 
         //private ICollection<Feedback> feedbacks;
 
-        public Seller(int userId)
+        public Seller()
         {
-            this.UserId = userId;
             //this.products = new HashSet<Product>();
             //this.feedbacks = new HashSet<Feedback>();
         }

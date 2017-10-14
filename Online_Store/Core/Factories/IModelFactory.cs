@@ -11,6 +11,6 @@ namespace Online_Store.Core.Factories
     {
         User CreateUser(string username, string hashedPassword);
 
-        Seller CreateSeller(int userId);
+        Seller CreateSeller();
     }
 }

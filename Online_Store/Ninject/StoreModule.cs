@@ -30,7 +30,7 @@ namespace Online_Store.Ninject
             this.Bind<IEngine>().To<Engine>().InSingletonScope().Named("Engine");
             this.Bind<IStoreContext>().To<StoreContext>().Named("context");
 
-            this.Bind<IUserService>().To<UserService>().Named("userService");
+            this.Bind<IUserService>().To<UserService>().InSingletonScope().Named("userService");
             this.Bind<IPasswordSecurityHasher>().To<PasswordSecurityHasher>().Named("passwordHasher");
 
 

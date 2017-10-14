@@ -24,6 +24,9 @@ namespace Online_Store.Core.Services
             this.hasher = hasher;
         }
 
+        public int LoggedUserId { get; set; }
+
+
         public string GeneratePasswordHash(string password)
         {
             return hasher.Hash(password);
@@ -36,11 +39,11 @@ namespace Online_Store.Core.Services
                 throw new Exception("Wrong Username");
             }
 
-            //var userPassword = this.context.Users.Single(u => u.Username == username).Password;
-            //if (!CheckPassword(password, userPassword))
-            //{
-            //    throw new Exception("Wrong Password");
-            //}
+            var userPassword = this.context.Users.Single(u => u.Username == username).Password;
+            if (!CheckPassword(password, userPassword))
+            {
+                throw new Exception("Wrong Password");
+            }
 
             return true;
         }

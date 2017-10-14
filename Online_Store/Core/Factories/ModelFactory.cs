@@ -14,9 +14,9 @@ namespace Online_Store.Core.Factories
             return new User(username, hashedPassword);
         }
 
-        public Seller CreateSeller(int userId)
+        public Seller CreateSeller()
         {
-            return new Seller(userId);
+            return new Seller();
         }
 
     }
