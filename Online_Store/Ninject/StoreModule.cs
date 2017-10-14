@@ -7,11 +7,6 @@ using Online_Store.Core.Providers;
 using Online_Store.Core.Services;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Ninject
 {
@@ -19,21 +14,19 @@ namespace Online_Store.Ninject
     {
         public override void Load()
         {
-            this.Bind<IWriter>().To<ConsoleWriter>().Named("console writer");
-            this.Bind<IReader>().To<ConsoleReader>().Named("console reader");
-            this.Bind<IParser>().To<CommandParser>().Named("command parser");
+            this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
+            this.Bind<IReader>().To<ConsoleReader>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
+            this.Bind<IParser>().To<CommandParser>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
 
+            this.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
+            this.Bind<IModelFactory>().To<ModelFactory>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
 
-            this.Bind<ICommandFactory>().To<CommandFactory>().Named("CommandFactory");
-            this.Bind<IModelFactory>().To<ModelFactory>().Named("ModelFactory");
-
-            this.Bind<IEngine>().To<Engine>().InSingletonScope().Named("Engine");
+            this.Bind<IEngine>().To<Engine>().InSingletonScope(); //no need from named bindings here, because there is only one IEngine class // can be singleton, as long as dont accept database in constructor or method arguments
             this.Bind<IStoreContext>().To<StoreContext>().Named("context");
 
             this.Bind<IUserService>().To<UserService>().InSingletonScope().Named("userService");
             this.Bind<IPasswordSecurityHasher>().To<PasswordSecurityHasher>().Named("passwordHasher");
-
-
+            
             this.Bind<ICommand>().To<CreateUserCommand>().Named("createuser");
             this.Bind<ICommand>().To<UserLoginCommand>().Named("login");
             this.Bind<ICommand>().To<BecomeSellerCommand>().Named("becomeseller");

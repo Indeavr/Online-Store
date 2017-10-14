@@ -99,7 +99,9 @@
       <DependentUpon>201710141136163_UserSeller.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\IProduct.cs" />
     <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Ninject\StoreModule.cs" />

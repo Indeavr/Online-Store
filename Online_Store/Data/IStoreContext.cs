@@ -14,6 +14,8 @@ namespace Online_Store.Data
 
         DbSet<Seller> Sellers { get; set; }
 
+        IDbSet<Product> Products { get; set; }
+
         int SaveChanges();
     }
 }

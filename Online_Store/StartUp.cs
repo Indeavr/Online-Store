@@ -4,6 +4,7 @@ using Online_Store.Data;
 using Online_Store.Migrations;
 using Online_Store.Ninject;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Online_Store
 {
@@ -14,11 +15,15 @@ namespace Online_Store
             Database
                 .SetInitializer(new MigrateDatabaseToLatestVersion<StoreContext, Configuration>());
 
+            using (var context = new StoreContext())
+            {
+                var sdaasdasda = context.Users.ToList();
+            }
 
-            IKernel kernel = new StandardKernel(new StoreModule());
+            //IKernel kernel = new StandardKernel(new StoreModule());
 
-            IEngine engine = kernel.Get<IEngine>("Engine");
-            engine.Start();
+            //IEngine engine = kernel.Get<IEngine>();
+            //engine.Start();
         }
     }
 }
