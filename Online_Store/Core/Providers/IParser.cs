@@ -11,6 +11,6 @@ namespace Online_Store.Core.Providers
     {
         ICommand ParseCommand(string fullCommand);
 
-        IList<string> ParseParameters(string fullCommand);
+        IList<string> ParseParameters();
     }
 }

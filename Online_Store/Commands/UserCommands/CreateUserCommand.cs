@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using Online_Store.Core.Factories;
+using Online_Store.Core.Providers;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using Online_Store.Models;
@@ -11,25 +12,24 @@ using System.Threading.Tasks;
 
 namespace Online_Store.Commands.UserCommands
 {
-    public class CreateUserCommand : ICommand
+    public class CreateUserCommand : Command, ICommand
     {
         private IUserService userService;
         private IModelFactory factory;
-        private IStoreContext context;
 
-        public CreateUserCommand(IModelFactory factory, IStoreContext context , IUserService userService)
+        public CreateUserCommand(IModelFactory factory, IUserService userService, IStoreContext context, IWriter writer, IReader reader)
+            :base(context, writer, reader)
         {
             Guard.WhenArgument(factory, "model factory").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
-            Guard.WhenArgument(context, "context").IsNull().Throw();
 
-            this.context = context;
             this.factory = factory;
             this.userService = userService;
         }
 
-        public string Execute(IList<string> parameters)
+        public override string Execute(IList<string> parameters)
         {
+            parameters = TakeInput();
             string username = parameters[0];
             string password = parameters[1];
 
@@ -40,6 +40,14 @@ namespace Online_Store.Commands.UserCommands
             this.context.SaveChanges();
 
             return $"Created User \"{username}\" successfully";
+        }
+
+        private IList<string> TakeInput()
+        {
+            var username = base.ReadOneLine("Username: ");
+            var password = base.ReadOneLine("Password: ");
+
+            return new List<string>() { username, password };
         }
     }
 }

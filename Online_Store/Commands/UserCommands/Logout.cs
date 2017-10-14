@@ -1,4 +1,5 @@
 ﻿using Bytes2you.Validation;
+using Online_Store.Core.Providers;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using System;
@@ -9,21 +10,19 @@ using System.Threading.Tasks;
 
 namespace Online_Store.Commands.UserCommands
 {
-    public class Logout : ICommand
+    public class Logout : Command, ICommand
     {
-        private IStoreContext context;
         private IUserService userService;
 
-        public Logout(IStoreContext context, IUserService userService)
+        public Logout(IUserService userService, IStoreContext context, IWriter writer, IReader reader)
+            : base(context, writer, reader)
         {
-            Guard.WhenArgument(context, "context").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
 
             this.userService = userService;
-            this.context = context;
         }
 
-        public string Execute(IList<string> parameters)
+        public override string Execute(IList<string> parameters)
         {
             this.userService.LoggedUserId = -1;
 

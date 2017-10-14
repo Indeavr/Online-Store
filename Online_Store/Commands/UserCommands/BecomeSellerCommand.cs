@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using Online_Store.Core.Factories;
+using Online_Store.Core.Providers;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using Online_Store.Models;
@@ -11,24 +12,22 @@ using System.Threading.Tasks;
 
 namespace Online_Store.Commands.UserCommands
 {
-    public class BecomeSellerCommand : ICommand
+    public class BecomeSellerCommand : Command, ICommand
     {
         private IUserService userService;
         private IModelFactory factory;
-        private IStoreContext context;
 
-        public BecomeSellerCommand(IModelFactory factory, IStoreContext context, IUserService userService)
+        public BecomeSellerCommand(IModelFactory factory, IUserService userService, IStoreContext context, IWriter writer, IReader reader)
+            : base(context, writer, reader)
         {
             Guard.WhenArgument(factory, "model factory").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
-            Guard.WhenArgument(context, "context").IsNull().Throw();
 
-            this.context = context;
             this.factory = factory;
             this.userService = userService;
         }
 
-        public string Execute(IList<string> parameters)
+        public override string Execute(IList<string> parameters)
         {
             var seller =  this.factory.CreateSeller();
 
@@ -42,5 +41,6 @@ namespace Online_Store.Commands.UserCommands
 
             return $"Congrats, you can now Sell Products!";
         }
+
     }
 }

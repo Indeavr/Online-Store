@@ -27,15 +27,9 @@ namespace Online_Store.Core.Providers
             return this.factory.CreateCommand(commandName);
         }
 
-        public IList<string> ParseParameters(string fullCommand)
+        public IList<string> ParseParameters()
         {
-            var commandParts = fullCommand.Split().Skip(1).ToList();
-            if (commandParts.Count == 0)
-            {
-                return new List<string>();
-            }
-
-            return commandParts;
+            return new List<string>();
         }
     }
 }

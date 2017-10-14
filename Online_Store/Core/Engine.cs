@@ -61,7 +61,7 @@ namespace Online_Store.Core
             }
 
             var command = this.parser.ParseCommand(commandAsString);
-            var parameters = this.parser.ParseParameters(commandAsString);
+            var parameters = this.parser.ParseParameters();
 
             var executionResult = command.Execute(parameters);
             return executionResult;
