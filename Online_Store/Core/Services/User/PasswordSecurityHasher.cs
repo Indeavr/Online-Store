@@ -18,7 +18,7 @@ namespace Online_Store.Core.Services.User
 
             //create hash
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations);
-            var hash = pbkdf2.GetBytes(HashSize);
+            var hash = pbkdf2.GetBytes(HashSize);   
 
             //combine salt and hash
             var hashBytes = new byte[SaltSize + HashSize];

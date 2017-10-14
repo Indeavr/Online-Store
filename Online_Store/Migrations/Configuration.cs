@@ -32,11 +32,16 @@ namespace Online_Store.Migrations
             //    );
             //
 
-            //using (StreamReader r = new StreamReader(@"D:\Users\Donevski\Desktop\UserInfo.json"))
-            //{
-            //    string json = r.ReadToEnd();
-            //    var user = JsonConvert.DeserializeObject<User>(json);
-            //}
+            using (StreamReader r = new StreamReader(@"../../../UserInfo.json"))
+            {
+                string json = r.ReadToEnd();
+                var user = JsonConvert.DeserializeObject<User>(json);
+                if(!context.Users.Any(u => u.Username == user.Username))
+                {
+                    context.Users.Add(user);
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }
