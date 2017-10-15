@@ -14,7 +14,7 @@ namespace Online_Store.Data
             : base("StoreDB")
         {
 
-        }
+        }   
 
         public DbSet<User> Users { get; set; }
         public DbSet<Seller> Sellers { get; set; }

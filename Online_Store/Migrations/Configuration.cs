@@ -36,7 +36,7 @@ namespace Online_Store.Migrations
             {
                 string json = r.ReadToEnd();
                 var user = JsonConvert.DeserializeObject<User>(json);
-                if(!context.Users.Any(u => u.Username == user.Username))
+                if (!context.Users.Any())
                 {
                     context.Users.Add(user);
                     context.SaveChanges();

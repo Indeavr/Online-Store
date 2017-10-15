@@ -7,13 +7,13 @@ namespace Online_Store.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UserSellerRelation : IMigrationMetadata
+    public sealed partial class UserSellerInitial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserSellerRelation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserSellerInitial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710141118356_UserSellerRelation"; }
+            get { return "201710151410524_UserSellerInitial"; }
         }
         
         string IMigrationMetadata.Source

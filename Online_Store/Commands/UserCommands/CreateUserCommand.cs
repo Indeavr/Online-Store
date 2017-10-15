@@ -18,7 +18,7 @@ namespace Online_Store.Commands.UserCommands
         private IModelFactory factory;
 
         public CreateUserCommand(IModelFactory factory, IUserService userService, IStoreContext context, IWriter writer, IReader reader)
-            :base(context, writer, reader)
+            : base(context, writer, reader)
         {
             Guard.WhenArgument(factory, "model factory").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();

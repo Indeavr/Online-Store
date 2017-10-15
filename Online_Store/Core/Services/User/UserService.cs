@@ -35,6 +35,15 @@ namespace Online_Store.Core.Services
 
         public bool ValidateCredentials(string username, string password)
         {
+            try
+            {
+                this.context.Users.Any();
+            }
+            catch (Exception)
+            {
+                return true;
+            }
+          
             if (!CheckUsername(username))
             {
                 throw new Exception("Wrong Username");
@@ -49,9 +58,20 @@ namespace Online_Store.Core.Services
             return true;
         }
 
+
         public bool CheckUsername(string username)
         {
-            return this.context.Users.Any(u => u.Username == username);
+            bool isTaken = false;
+            try
+            {
+                isTaken = this.context.Users.Any(u => u.Username == username);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return isTaken;
         }
 
         public bool CheckPassword(string enteredPassword, string userPassword)
