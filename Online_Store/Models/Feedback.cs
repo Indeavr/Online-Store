@@ -12,6 +12,11 @@ namespace Online_Store.Models
         private int rating;
         private string comment;
 
+        public Feedback()
+        {
+
+        }
+
         public Feedback(int rating, string comment)
         {
             this.rating = rating;

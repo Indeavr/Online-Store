@@ -93,8 +93,8 @@
     <Compile Include="Models\Contracts\ISale.cs" />
     <Compile Include="Models\Contracts\IShippingDetails.cs" />
     <Compile Include="Models\Feedback.cs" />
-    <Compile Include="Models\IProduct.cs" />
-    <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\Contracts\IProduct.cs" />
+    <Compile Include="Models\Contracts\IUser.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Seller.cs" />
