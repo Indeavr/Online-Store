@@ -83,23 +83,23 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710151410524_UserSellerInitial.cs" />
-    <Compile Include="Migrations\201710151410524_UserSellerInitial.Designer.cs">
-      <DependentUpon>201710151410524_UserSellerInitial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710161616200_Cart Initial.cs" />
-    <Compile Include="Migrations\201710161616200_Cart Initial.Designer.cs">
-      <DependentUpon>201710161616200_Cart Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201710161654255_init commit again.cs" />
+    <Compile Include="Migrations\201710161654255_init commit again.Designer.cs">
+      <DependentUpon>201710161654255_init commit again.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Contracts\ICart.cs" />
+    <Compile Include="Models\Contracts\ICategory.cs" />
     <Compile Include="Models\Contracts\IFeedback.cs" />
+    <Compile Include="Models\Contracts\IPaymentMethod.cs" />
     <Compile Include="Models\Contracts\ISale.cs" />
     <Compile Include="Models\Contracts\IShippingDetails.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Contracts\IProduct.cs" />
     <Compile Include="Models\Contracts\IUser.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Seller.cs" />
@@ -114,11 +114,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710151410524_UserSellerInitial.resx">
-      <DependentUpon>201710151410524_UserSellerInitial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710161616200_Cart Initial.resx">
-      <DependentUpon>201710161616200_Cart Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710161654255_init commit again.resx">
+      <DependentUpon>201710161654255_init commit again.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

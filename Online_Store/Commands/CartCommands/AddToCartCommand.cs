@@ -33,6 +33,8 @@ namespace Online_Store.Commands.CartCommands
 
             product.ProductName = productName;
 
+            //cart.Product = product;
+            
             cart.Products.Add(product);
 
             return $"Product successfully added to cart";

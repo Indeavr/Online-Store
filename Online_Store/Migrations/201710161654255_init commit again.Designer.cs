@@ -7,13 +7,13 @@ namespace Online_Store.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CartInitial : IMigrationMetadata
+    public sealed partial class initcommitagain : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CartInitial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initcommitagain));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710161616200_Cart Initial"; }
+            get { return "201710161654255_init commit again"; }
         }
         
         string IMigrationMetadata.Source

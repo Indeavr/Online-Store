@@ -1,26 +1,20 @@
-﻿using System;
+﻿using Online_Store.Models.Contracts;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Online_Store.Models
 {
-    public class Cart : ICart
+    public class Category : ICategory
     {
-        //private ICollection<Product> products;
-
-        public Cart()
-        {
-
-        }
-
         public int Id { get; set; }
 
-        //public int ProductId { get; set; }
+        public string CategoryName { get; set; }
 
-        public int Quantity { get; set; }
-        
         public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -10,9 +10,11 @@ namespace Online_Store.Models
     {
         int Id { get; set; }
 
-        int ProductId { get; set; }
+        //int ProductId { get; set; }
 
         int Quantity { get; set; }
+
+        //Product Product { get; set; }
 
         ICollection<Product> Products { get; set; }
     }

@@ -14,30 +14,37 @@ namespace Online_Store.Models
         {
         }
 
-        
+        [Required]
         public int Id { get; set; }
 
+        [Required]
         public string ProductName { get; set; }
 
-
+        [Required]
         public decimal Price { get; set; }
 
-        
-        public string Category { get; set; }
-
-        
-        public DateTime Date { get; set; }
-
-        
-        public string PaymentMethod { get; set; }
-
-        
-        public bool Instock { get; set; }
+        //public virtual ICollection<Category> Categories { get; set; } 
+        /*
+         * не може един продукт да има колекция от категории
+         * */
+        public ICollection<Category> Categories { get; set; }
 
         [NotMapped]
+        public DateTime Date { get; set; }
+
+        //[Key, ForeignKey("PaymentMethod")]
+        public PaymentMethod PaymentMethod { get; set; }
+
+        [Required]
+        public bool Instock { get; set; }
+        
+        //[Key, ForeignKey("Seller")]
         public Seller Seller { get; set; }
+
         public ShippingDetails ShippingDetails { get; set; }
+
         public Feedback Feedback { get; set; }
+
         public Sale Sale { get; set; }
     }
 }

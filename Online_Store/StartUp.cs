@@ -20,10 +20,10 @@ namespace Online_Store
                 var sdaasdasda = context.Users.ToList();
             }
 
-            IKernel kernel = new StandardKernel(new StoreModule());
+            //IKernel kernel = new StandardKernel(new StoreModule());
 
-            IEngine engine = kernel.Get<IEngine>();
-            engine.Start();
+            //IEngine engine = kernel.Get<IEngine>();
+            //engine.Start();
         }
     }
 }
