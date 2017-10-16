@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Online_Store.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Models
 {
@@ -22,29 +19,24 @@ namespace Online_Store.Models
 
         [Required]
         public decimal Price { get; set; }
+        
+        public virtual Category Categories { get; set; }
 
-        //public virtual ICollection<Category> Categories { get; set; } 
-        /*
-         * не може един продукт да има колекция от категории
-         * */
-        public ICollection<Category> Categories { get; set; }
-
-        [NotMapped]
+        [Required]
         public DateTime Date { get; set; }
 
-        //[Key, ForeignKey("PaymentMethod")]
-        public PaymentMethod PaymentMethod { get; set; }
+        public PaymentMethodEnum PaymentMethod { get; set; }
 
         [Required]
         public bool Instock { get; set; }
         
-        //[Key, ForeignKey("Seller")]
-        public Seller Seller { get; set; }
+        public virtual Seller Seller { get; set; }
 
-        public ShippingDetails ShippingDetails { get; set; }
+        public virtual ShippingDetails ShippingDetails { get; set; }
 
-        public Feedback Feedback { get; set; }
+        public virtual Feedback Feedback { get; set; }
 
-        public Sale Sale { get; set; }
+        public virtual Sale Sale { get; set; }
+        
     }
 }

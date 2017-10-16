@@ -61,6 +61,9 @@
     <Compile Include="Commands\CartCommands\AddToCartCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\ProductCommands\AddProductCommand.cs" />
+    <Compile Include="Commands\ProductCommands\EditProductCommand.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveProductCommand.cs" />
     <Compile Include="Commands\UserCommands\BecomeSellerCommand.cs" />
     <Compile Include="Commands\UserCommands\CreateUserCommand.cs" />
     <Compile Include="Commands\UserCommands\Logout.cs" />
@@ -74,18 +77,21 @@
     <Compile Include="Core\Providers\CommandParser.cs" />
     <Compile Include="Core\Providers\ConsoleReader.cs" />
     <Compile Include="Core\Providers\ConsoleWriter.cs" />
+    <Compile Include="Core\Providers\DateTimeProvider\DateTimeProvider.cs" />
     <Compile Include="Core\Providers\IParser.cs" />
     <Compile Include="Core\Providers\IReader.cs" />
     <Compile Include="Core\Providers\IWriter.cs" />
+    <Compile Include="Core\Services\Product\IProductService.cs" />
+    <Compile Include="Core\Services\Product\ProductService.cs" />
     <Compile Include="Core\Services\User\IPasswordSecurityHasher.cs" />
     <Compile Include="Core\Services\User\IUserService.cs" />
     <Compile Include="Core\Services\User\PasswordSecurityHasher.cs" />
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710161654255_init commit again.cs" />
-    <Compile Include="Migrations\201710161654255_init commit again.Designer.cs">
-      <DependentUpon>201710161654255_init commit again.cs</DependentUpon>
+    <Compile Include="Migrations\201710162156007_initial.cs" />
+    <Compile Include="Migrations\201710162156007_initial.Designer.cs">
+      <DependentUpon>201710162156007_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -96,6 +102,7 @@
     <Compile Include="Models\Contracts\IPaymentMethod.cs" />
     <Compile Include="Models\Contracts\ISale.cs" />
     <Compile Include="Models\Contracts\IShippingDetails.cs" />
+    <Compile Include="Models\Enums\PaymentMethodEnum.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Contracts\IProduct.cs" />
     <Compile Include="Models\Contracts\IUser.cs" />
@@ -113,9 +120,10 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710161654255_init commit again.resx">
-      <DependentUpon>201710161654255_init commit again.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710162156007_initial.resx">
+      <DependentUpon>201710162156007_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

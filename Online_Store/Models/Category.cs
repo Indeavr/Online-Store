@@ -1,20 +1,18 @@
 ﻿using Online_Store.Models.Contracts;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Models
 {
     public class Category : ICategory
     {
+        [Required]
         public int Id { get; set; }
 
+        [Required]
         public string CategoryName { get; set; }
 
+        [Required]
         public virtual ICollection<Product> Products { get; set; }
     }
 }

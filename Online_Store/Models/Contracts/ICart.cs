@@ -14,8 +14,6 @@ namespace Online_Store.Models
 
         int Quantity { get; set; }
 
-        //Product Product { get; set; }
-
         ICollection<Product> Products { get; set; }
     }
 }

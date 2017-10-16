@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Online_Store.Models.Enums;
+using System;
 
 namespace Online_Store.Models
 {
@@ -13,13 +10,12 @@ namespace Online_Store.Models
         string ProductName { get; set; }
 
         decimal Price { get; set; }
-
-        ICollection<Category> Categories { get; set; }
-        //Category Category { get; set; }
+        
+        Category Categories { get; set; }
 
         DateTime Date { get; set; }
 
-        PaymentMethod PaymentMethod { get; set; }
+        PaymentMethodEnum PaymentMethod { get; set; }
 
         bool Instock { get; set; }
 
