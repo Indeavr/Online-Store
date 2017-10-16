@@ -87,10 +87,18 @@
       <DependentUpon>201710151410524_UserSellerInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Contracts\ICart.cs" />
+    <Compile Include="Models\Contracts\IFeedback.cs" />
+    <Compile Include="Models\Contracts\ISale.cs" />
+    <Compile Include="Models\Contracts\IShippingDetails.cs" />
+    <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\IProduct.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Seller.cs" />
+    <Compile Include="Models\ShippingDetails.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Ninject\StoreModule.cs" />
     <Compile Include="StartUp.cs" />
