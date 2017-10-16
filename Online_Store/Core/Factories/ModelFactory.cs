@@ -19,5 +19,14 @@ namespace Online_Store.Core.Factories
             return new Seller();
         }
 
+        public Cart CreateCart()
+        {
+            return new Cart();
+        }
+
+        public Product CreateProduct()
+        {
+            return new Product();
+        }
     }
 }

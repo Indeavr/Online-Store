@@ -9,6 +9,7 @@ namespace Online_Store.Models
     public interface IProduct
     {
         int Id {get; set;}
+        string ProductName { get; set; }
         decimal Price { get; set; }
         string Category { get; set; }
         DateTime Date { get; set; }

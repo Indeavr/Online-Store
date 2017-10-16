@@ -17,7 +17,9 @@ namespace Online_Store.Models
         
         public int Id { get; set; }
 
-        
+        public string ProductName { get; set; }
+
+
         public decimal Price { get; set; }
 
         
@@ -34,8 +36,8 @@ namespace Online_Store.Models
 
         [NotMapped]
         public Seller Seller { get; set; }
-        //public ShippingDetails ShippingDetails { get; set; }
-        //public Feedback Feedback { get; set; }
-        //public Sale Sale { get; set; }
+        public ShippingDetails ShippingDetails { get; set; }
+        public Feedback Feedback { get; set; }
+        public Sale Sale { get; set; }
     }
 }

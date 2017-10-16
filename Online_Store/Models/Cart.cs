@@ -8,7 +8,7 @@ namespace Online_Store.Models
 {
     public class Cart : ICart
     {
-        private ICollection<IProduct> products;
+        private ICollection<Product> products;
 
         public Cart()
         {
@@ -21,6 +21,6 @@ namespace Online_Store.Models
 
         public int Quantity { get; set; }
 
-        public virtual ICollection<IProduct> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
