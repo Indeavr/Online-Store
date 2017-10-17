@@ -114,7 +114,25 @@ namespace Online_Store.Core.ProductServices
 
         public string RemoveProductWithName(string productName)
         {
-            return "pancho";
+            foreach (Category category in this.context.Categories)
+            {
+                foreach (Product product in category.Products)
+                {
+
+                }
+            }
+
+            try
+            {
+                Product product = this.context.Products.Single(x => x.ProductName.ToLower() == productName.ToLower());
+                this.context.Products.Remove(product);
+                return "Product successfuly removed.";
+            }
+            catch
+            {
+                //several cases to handle
+                return "Product doesn`t exist or several other reasons.";
+            }
         }
     }
 }
