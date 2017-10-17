@@ -29,7 +29,8 @@ namespace Online_Store.Commands.UserCommands
 
         public override string Execute(IList<string> parameters)
         {
-            if (this.userService.LoggedUserId == -1)
+
+            if (!this.userService.IsUserLogged())
             {
                 return "You must Login First!";
             }

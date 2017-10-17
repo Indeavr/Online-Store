@@ -1,13 +1,8 @@
-﻿using Online_Store.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Online_Store.Models
 {
-    public class Feedback : IFeedback
+    public class Feedback
     {
         private int rating;
         private string comment;
@@ -30,6 +25,10 @@ namespace Online_Store.Models
         public int UserId { get; set; }
 
         public int ProductId { get; set; }
+
+        public virtual Product Product { get; set; }
+
+        // public int SellerId { get; set; }
 
         public string Comment { get; set; }
 

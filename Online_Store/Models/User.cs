@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Online_Store.Models
 {
@@ -31,8 +26,6 @@ namespace Online_Store.Models
         public virtual Cart Cart { get; set; }
 
         //public virtual Order Order { get; set; }
-
-        public int SellerId { get; set; }
 
         public virtual Seller Seller { get; set; }
     }

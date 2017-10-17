@@ -1,10 +1,9 @@
-﻿using Online_Store.Models.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Online_Store.Models
 {
-    public class Category : ICategory
+    public class Category
     {
         [Required]
         public int Id { get; set; }

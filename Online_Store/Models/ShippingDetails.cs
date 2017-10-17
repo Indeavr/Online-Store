@@ -1,22 +1,21 @@
-﻿using Online_Store.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Online_Store.Models
 {
-    public class ShippingDetails : IShippingDetails
+    public class ShippingDetails
     {
         public ShippingDetails()
         {
         }
 
-        public int Id { get; set; }
+        [Key, ForeignKey("Product")]
+        public int ProductId { get; set; }
 
         public decimal Cost { get; set; }
 
         public int DeliveryTIme { get; set; }
+
+        public Product Product { get; set; }
     }
 }

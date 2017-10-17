@@ -80,5 +80,14 @@ namespace Online_Store.Core.Services
 
             return isLegit;
         }
+
+        public bool IsUserLogged()
+        {
+            if (LoggedUserId == -1)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

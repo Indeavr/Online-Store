@@ -89,9 +89,9 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710162156007_initial.cs" />
-    <Compile Include="Migrations\201710162156007_initial.Designer.cs">
-      <DependentUpon>201710162156007_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201710171040538_DbInitial.cs" />
+    <Compile Include="Migrations\201710171040538_DbInitial.Designer.cs">
+      <DependentUpon>201710171040538_DbInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -106,7 +106,6 @@
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Contracts\IProduct.cs" />
     <Compile Include="Models\Contracts\IUser.cs" />
-    <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Seller.cs" />
@@ -120,10 +119,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710162156007_initial.resx">
-      <DependentUpon>201710162156007_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710171040538_DbInitial.resx">
+      <DependentUpon>201710171040538_DbInitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

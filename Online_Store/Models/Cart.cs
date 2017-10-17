@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Online_Store.Models
 {
-    public class Cart : ICart
+    public class Cart
     {
         //private ICollection<Product> products;
 
@@ -19,8 +15,6 @@ namespace Online_Store.Models
 
         //public int ProductId { get; set; }
 
-        public int Quantity { get; set; }
-        
         public virtual ICollection<Product> Products { get; set; }
     }
 }

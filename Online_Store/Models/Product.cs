@@ -1,11 +1,11 @@
 ﻿using Online_Store.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Online_Store.Models
 {
-    public class Product : IProduct
+    public class Product
     {
         public Product()
         {
@@ -31,12 +31,14 @@ namespace Online_Store.Models
         public bool Instock { get; set; }
         
         public virtual Seller Seller { get; set; }
-
+        
         public virtual ShippingDetails ShippingDetails { get; set; }
 
-        public virtual Feedback Feedback { get; set; }
+        public virtual ICollection<Feedback> Feedback { get; set; }
 
         public virtual Sale Sale { get; set; }
-        
+
+        // think about it
+        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

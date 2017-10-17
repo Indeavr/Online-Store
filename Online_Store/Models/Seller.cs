@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Models
 {
     public class Seller
     {
-        //private ICollection<Product> products;
+        private ICollection<Product> products;
 
-        //private ICollection<Feedback> feedbacks;
+        private ICollection<Feedback> feedbacks;
 
         public Seller()
         {
-            //this.products = new HashSet<Product>();
-            //this.feedbacks = new HashSet<Feedback>();
+            this.products = new HashSet<Product>();
+            this.feedbacks = new HashSet<Feedback>();
         }
 
         [Key, ForeignKey("User")]
@@ -25,8 +21,28 @@ namespace Online_Store.Models
 
         public virtual User User { get; set; }
 
-        // public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products
+        {
+            get
+            {
+                return this.products;
+            }
+            set
+            {
+                this.products = value;
+            }
+        }
 
-        // public virtual ICollection<Feedback> Feedbacks { get; set; }
+        public virtual ICollection<Feedback> Feedbacks
+        {
+            get
+            {
+                return this.feedbacks;
+            }
+            set
+            {
+                this.feedbacks = value;
+            }
+        }
     }
 }

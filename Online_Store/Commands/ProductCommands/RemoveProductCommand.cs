@@ -20,7 +20,7 @@ namespace Online_Store.Commands.ProductCommands
 
             try
             {
-                Product product = base.context.Products.Single(x=>x.ProductName.ToLower() == productName.ToLower());
+                Product product = base.context.Products.Single(x => x.ProductName.ToLower() == productName.ToLower());
                 base.context.Products.Remove(product);
                 return "Product successfuly removed.";
             }
@@ -30,11 +30,11 @@ namespace Online_Store.Commands.ProductCommands
                 return "Product doesn`t exist.";
             }
         }
-        
+
         private IList<string> TakeInput()
         {
             var productName = base.ReadOneLine("ProductName (case insensitive): ");
-            
+
             return new List<string>() { productName.ToLower() };
         }
     }
