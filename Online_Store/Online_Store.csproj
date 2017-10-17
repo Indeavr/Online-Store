@@ -80,14 +80,13 @@
     <Compile Include="Core\Providers\CommandParser.cs" />
     <Compile Include="Core\Providers\ConsoleReader.cs" />
     <Compile Include="Core\Providers\ConsoleWriter.cs" />
-    <Compile Include="Core\Providers\DateTimeProvider\DateTimeProvider.cs" />
     <Compile Include="Core\Providers\ILoggedUserProvider.cs" />
     <Compile Include="Core\Providers\IParser.cs" />
     <Compile Include="Core\Providers\IReader.cs" />
     <Compile Include="Core\Providers\IWriter.cs" />
     <Compile Include="Core\Providers\LoggedUserProvider.cs" />
-    <Compile Include="Core\Services\Product\IProductService.cs" />
-    <Compile Include="Core\Services\Product\ProductService.cs" />
+    <Compile Include="Core\Services\ProductService\IProductService.cs" />
+    <Compile Include="Core\Services\ProductService\ProductService.cs" />
     <Compile Include="Core\Services\User\IPasswordSecurityHasher.cs" />
     <Compile Include="Core\Services\User\IUserService.cs" />
     <Compile Include="Core\Services\User\PasswordSecurityHasher.cs" />

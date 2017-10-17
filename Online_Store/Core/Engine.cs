@@ -16,9 +16,7 @@ namespace Online_Store.Core
         private readonly IReader reader;
         private readonly IWriter writer;
         private readonly IParser parser;
-
-      //  private StringBuilder Builder = new StringBuilder();
-
+        
         public Engine(IReader reader, IWriter writer, IParser parser)
         {
             Guard.WhenArgument(reader, "reader").IsNull().Throw();
@@ -36,9 +34,9 @@ namespace Online_Store.Core
             {
                 try
                 {
-                    var commandAsString = this.reader.ReadLine();
+                    var commandAsString = this.reader.ReadLine().ToLower();
 
-                    if (commandAsString.ToLower() == TerminationCommand.ToLower())
+                    if (commandAsString == TerminationCommand.ToLower())
                     {
                         break;
                     }
@@ -61,9 +59,8 @@ namespace Online_Store.Core
             }
 
             var command = this.parser.ParseCommand(commandAsString);
-            var parameters = this.parser.ParseParameters();
-
-            var executionResult = command.Execute(parameters);
+            
+            var executionResult = command.Execute();
             return executionResult;
         }
     }

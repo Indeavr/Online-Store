@@ -17,7 +17,7 @@ namespace Online_Store.Commands.SellerCommands
         }
 
      
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
             var products = this.context.Sellers.Single(i => i.UserId == 1).Products;
 

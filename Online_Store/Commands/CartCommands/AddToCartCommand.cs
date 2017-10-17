@@ -13,18 +13,17 @@ namespace Online_Store.Commands.CartCommands
 {
     public class AddToCartCommand : Command, ICommand
     {
-        private IModelFactory factory;
-
-
+        private readonly IModelFactory factory;
+        
         public AddToCartCommand(IModelFactory factory, IStoreContext context, IWriter writer, IReader reader)
             : base(context, writer, reader)
         {
             this.factory = factory;
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
-            parameters = TakeInput();
+            IList<string> parameters = TakeInput();
 
             int cartId = int.Parse(parameters[0]);
             string productName = parameters[1];

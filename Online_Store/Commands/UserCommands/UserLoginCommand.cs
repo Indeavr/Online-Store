@@ -13,9 +13,9 @@ namespace Online_Store.Commands.UserCommands
 {
     public class UserLoginCommand : Command, ICommand
     {
-        private IUserService userService;
-        private IModelFactory factory;
-        private ILoggedUserProvider loggedUserProvider;
+        private readonly IUserService userService;
+        private readonly IModelFactory factory;
+        private readonly ILoggedUserProvider loggedUserProvider;
 
         public UserLoginCommand(IModelFactory factory, IUserService userService, IStoreContext context,
             ILoggedUserProvider loggedUserProvider, IWriter writer, IReader reader)
@@ -30,9 +30,9 @@ namespace Online_Store.Commands.UserCommands
             this.loggedUserProvider = loggedUserProvider;
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
-            parameters = TakeInput();
+            IList<string> parameters = TakeInput();
             if (this.loggedUserProvider.CurrentUserId != -1)
             {
                 return "You are already logged in!";

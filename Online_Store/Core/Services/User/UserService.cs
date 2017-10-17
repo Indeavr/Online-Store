@@ -13,9 +13,9 @@ namespace Online_Store.Core.Services
 {
     public class UserService : IUserService
     {
-        private IPasswordSecurityHasher hasher;
-        private IStoreContext context;
-        private ILoggedUserProvider loggedUserProvider;
+        private readonly IPasswordSecurityHasher hasher;
+        private readonly IStoreContext context;
+        private readonly ILoggedUserProvider loggedUserProvider;
 
         public UserService(IPasswordSecurityHasher hasher, IStoreContext context, ILoggedUserProvider loggedUserProvider)
         {

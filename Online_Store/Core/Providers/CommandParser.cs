@@ -26,10 +26,5 @@ namespace Online_Store.Core.Providers
 
             return this.factory.CreateCommand(commandName);
         }
-
-        public IList<string> ParseParameters()
-        {
-            return new List<string>();
-        }
     }
 }

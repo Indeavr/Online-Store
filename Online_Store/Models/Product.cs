@@ -43,7 +43,10 @@ namespace Online_Store.Models
         [ForeignKey("Seller")]
         public int? SellerId { get; set; }
 
+
+        //think this is unnessesery
         public virtual Seller Seller { get; set; }
+
 
         public virtual ShippingDetails ShippingDetails { get; set; }
 

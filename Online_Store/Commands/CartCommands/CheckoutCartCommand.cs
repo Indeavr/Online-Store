@@ -15,9 +15,9 @@ namespace Online_Store.Commands.CartCommands
         {
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
-            parameters = TakeInput();
+            IList<string> parameters = TakeInput();
 
             int cartId = int.Parse(parameters[0]);
             string productName = parameters[1];

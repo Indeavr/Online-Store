@@ -14,9 +14,9 @@ namespace Online_Store.Commands.UserCommands
 {
     public class BecomeSellerCommand : Command, ICommand
     {
-        private IUserService userService;
-        private IModelFactory factory;
-        private ILoggedUserProvider loggedUserProvider;
+        private readonly IUserService userService;
+        private readonly IModelFactory factory;
+        private readonly ILoggedUserProvider loggedUserProvider;
 
         public BecomeSellerCommand(IModelFactory factory, IUserService userService, ILoggedUserProvider loggedUserProvider,
             IStoreContext context, IWriter writer, IReader reader)
@@ -31,7 +31,7 @@ namespace Online_Store.Commands.UserCommands
             this.loggedUserProvider = loggedUserProvider;
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
 
             if (!this.userService.IsUserLogged())

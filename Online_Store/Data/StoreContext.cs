@@ -16,16 +16,14 @@ namespace Online_Store.Data
 
         }   
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Seller> Sellers { get; set; }
+        public IDbSet<User> Users { get; set; }
+        public IDbSet<Seller> Sellers { get; set; }
         public IDbSet<Cart> Carts { get; set; }
-
         public IDbSet<Product> Products { get; set; }
         public IDbSet<Category> Categories { get; set; }
-        public DbSet<ShippingDetails> ShippingDetails { get; set; }
-
+        public IDbSet<ShippingDetails> ShippingDetails { get; set; }
         public IDbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Sale> Sales { get; set; }
+        public IDbSet<Sale> Sales { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -13,9 +13,9 @@ namespace Online_Store.Commands.ProductCommands
         {
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
-            parameters = TakeInput();
+            IList<string> parameters = TakeInput();
             string productName = parameters[0];
 
             try

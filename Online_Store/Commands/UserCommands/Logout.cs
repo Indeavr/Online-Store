@@ -12,8 +12,8 @@ namespace Online_Store.Commands.UserCommands
 {
     public class Logout : Command, ICommand
     {
-        private IUserService userService;
-        private ILoggedUserProvider loggedUserProvider;
+        private readonly IUserService userService;
+        private readonly ILoggedUserProvider loggedUserProvider;
 
         public Logout(IUserService userService, ILoggedUserProvider loggedUserProvider, IStoreContext context, IWriter writer, IReader reader)
             : base(context, writer, reader)
@@ -25,7 +25,7 @@ namespace Online_Store.Commands.UserCommands
             this.loggedUserProvider = loggedUserProvider;
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
             //add logout in user service
             this.loggedUserProvider.CurrentUserId = -1;

@@ -14,9 +14,9 @@ namespace Online_Store.Commands.UserCommands
 {
     public class CreateUserCommand : Command, ICommand
     {
-        private IUserService userService;
-        private IModelFactory factory;
-        private ILoggedUserProvider loggedUserProvider;
+        private readonly IUserService userService;
+        private readonly IModelFactory factory;
+        private readonly ILoggedUserProvider loggedUserProvider;
 
         public CreateUserCommand(IModelFactory factory, IUserService userService, ILoggedUserProvider loggedUserProvider,
             IStoreContext context, IWriter writer, IReader reader)
@@ -31,9 +31,9 @@ namespace Online_Store.Commands.UserCommands
             this.loggedUserProvider = loggedUserProvider;
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
-            parameters = TakeInput();
+            IList<string> parameters = TakeInput();
             string username = parameters[0];
             string password = parameters[1];
 

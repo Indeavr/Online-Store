@@ -11,9 +11,9 @@ namespace Online_Store.Commands
 {
     public abstract class Command : ICommand
     {
-        protected IStoreContext context;
-        private IWriter writer;
-        private IReader reader;
+        protected readonly IStoreContext context;
+        private readonly IWriter writer;
+        private readonly IReader reader;
 
         public Command(IStoreContext context, IWriter writer, IReader reader)
         {
@@ -26,7 +26,7 @@ namespace Online_Store.Commands
             this.reader = reader;
         }
 
-        public abstract string Execute(IList<string> parameters);
+        public abstract string Execute();
 
         protected string ReadOneLine(string textToShow)
         {
