@@ -6,20 +6,13 @@ using System.Threading.Tasks;
 using Online_Store.Core.Providers;
 using Online_Store.Data;
 using Online_Store.Models;
-using Bytes2you.Validation;
-using Online_Store.Core.Factories;
 
 namespace Online_Store.Commands.CartCommands
 {
-    public class AddToCartCommand : Command, ICommand
+    public class CheckoutCardCommand : Command, ICommand
     {
-        private IModelFactory factory;
-
-
-        public AddToCartCommand(IModelFactory factory, IStoreContext context, IWriter writer, IReader reader)
-            : base(context, writer, reader)
+        public CheckoutCardCommand(IStoreContext context, IWriter writer, IReader reader) : base(context, writer, reader)
         {
-            this.factory = factory;
         }
 
         public override string Execute(IList<string> parameters)
@@ -29,17 +22,11 @@ namespace Online_Store.Commands.CartCommands
             int cartId = int.Parse(parameters[0]);
             string productName = parameters[1];
 
-            //Cart cart = this.factory.CreateCart();
-            //Product product = this.factory.CreateProduct();
-            //product.ProductName = productName;
-
-            //this.context.Carts.Add(cart);
-
             Cart cart = base.context.Carts.Single(c => c.Id == cartId);
             Product product = base.context.Products.Single(p => p.ProductName == productName);
-            cart.Products.Add(product);
+            cart.Products.Remove(product);
 
-            return $"Product successfully added to cart";
+            return $"Thank you for purchasing this product";
         }
 
         private IList<string> TakeInput()

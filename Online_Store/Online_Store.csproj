@@ -59,7 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CartCommands\AddToCartCommand.cs" />
+    <Compile Include="Commands\CartCommands\CheckoutCartCommand.cs" />
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\FeedbackCommands\AddFeedbackCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\EditProductCommand.cs" />

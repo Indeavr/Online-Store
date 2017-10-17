@@ -18,6 +18,8 @@ namespace Online_Store.Data
 
         IDbSet<Cart> Carts { get; set; }
 
+        IDbSet<Feedback> Feedbacks { get; set; }
+
         int SaveChanges();
     }
 }

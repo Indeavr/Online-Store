@@ -24,7 +24,7 @@ namespace Online_Store.Data
         public IDbSet<Category> Categories { get; set; }
         public DbSet<ShippingDetails> ShippingDetails { get; set; }
 
-        public DbSet<Feedback> Feedbacks { get; set; }
+        public IDbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Sale> Sales { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -1,5 +1,7 @@
 ﻿using Ninject.Modules;
 using Online_Store.Commands;
+using Online_Store.Commands.CartCommands;
+using Online_Store.Commands.FeedbackCommands;
 using Online_Store.Commands.SellerCommands;
 using Online_Store.Commands.UserCommands;
 using Online_Store.Core;
@@ -35,6 +37,10 @@ namespace Online_Store.Ninject
             this.Bind<ICommand>().To<Logout>().Named("logout");
             this.Bind<ICommand>().To<BecomeSellerCommand>().Named("becomeseller");
             this.Bind<ICommand>().To<ListAllProductsBySellerCommand>().Named("sellerProducts");
+
+            this.Bind<ICommand>().To<AddToCartCommand>().Named("addtocart");
+            this.Bind<ICommand>().To<CheckoutCardCommand>().Named("checkoutcart");
+            this.Bind<ICommand>().To<AddFeedbackCommand>().Named("addfeedback");
         }
     }
 }
