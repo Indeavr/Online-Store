@@ -81,12 +81,11 @@ namespace Online_Store.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Username = c.String(nullable: false, maxLength: 12),
                         Password = c.String(nullable: false),
-                        CardId = c.Int(),
-                        Cart_Id = c.Int(),
+                        CartId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Carts", t => t.Cart_Id)
-                .Index(t => t.Cart_Id);
+                .ForeignKey("dbo.Carts", t => t.CartId)
+                .Index(t => t.CartId);
             
             CreateTable(
                 "dbo.Sales",
@@ -146,7 +145,7 @@ namespace Online_Store.Migrations
             DropForeignKey("dbo.Sales", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Feedbacks", "SellerId", "dbo.Sellers");
             DropForeignKey("dbo.Sellers", "UserId", "dbo.Users");
-            DropForeignKey("dbo.Users", "Cart_Id", "dbo.Carts");
+            DropForeignKey("dbo.Users", "CartId", "dbo.Carts");
             DropForeignKey("dbo.Products", "Seller_UserId", "dbo.Sellers");
             DropForeignKey("dbo.Feedbacks", "Seller_UserId", "dbo.Sellers");
             DropForeignKey("dbo.Feedbacks", "ProductId", "dbo.Products");
@@ -160,7 +159,7 @@ namespace Online_Store.Migrations
             DropIndex("dbo.ProductCarts", new[] { "Product_Id" });
             DropIndex("dbo.ShippingDetails", new[] { "ProductId" });
             DropIndex("dbo.Sales", new[] { "ProductId" });
-            DropIndex("dbo.Users", new[] { "Cart_Id" });
+            DropIndex("dbo.Users", new[] { "CartId" });
             DropIndex("dbo.Sellers", new[] { "UserId" });
             DropIndex("dbo.Feedbacks", new[] { "Seller_UserId" });
             DropIndex("dbo.Feedbacks", new[] { "SellerId" });
