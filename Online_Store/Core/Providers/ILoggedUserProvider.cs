@@ -8,6 +8,6 @@ namespace Online_Store.Core.Providers
 {
     public interface ILoggedUserProvider
     {
-        int currentUserId { get; set; }
+        int CurrentUserId { get; set; }
     }
 }

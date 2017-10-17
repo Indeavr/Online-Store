@@ -22,33 +22,33 @@ namespace Online_Store
             //    var sdaasdasda = context.Users.ToList();
             //}
 
-            //IKernel kernel = new StandardKernel(new StoreModule());
+            IKernel kernel = new StandardKernel(new StoreModule());
 
-            //IEngine engine = kernel.Get<IEngine>();
-            //engine.Start();
+            IEngine engine = kernel.Get<IEngine>();
+            engine.Start();
 
-            using (var context = new StoreContext())
-            {
-                var product = new Product("name2", 20.12m, PaymentMethodEnum.Cash);
-                var shipD = new ShippingDetails(20m);
-                product.ShippingDetails = shipD;
-                product.SellerId = 1;
-                product.Seller = context.Users.Single(i => i.Id == 1).Seller;
+            //using (var context = new StoreContext())
+            //{
+            //    var product = new Product("name2", 20.12m, PaymentMethodEnum.Cash);
+            //    var shipD = new ShippingDetails(20m);
+            //    product.ShippingDetails = shipD;
+            //    product.SellerId = 1;
+            //    product.Seller = context.Users.Single(i => i.Id == 1).Seller;
 
-                context.Products.Add(product);
-                context.ShippingDetails.Add(shipD);
+            //    context.Products.Add(product);
+            //    context.ShippingDetails.Add(shipD);
 
-                context.SaveChanges();
-            }
+            //    context.SaveChanges();
+            //}
 
-            using (var context = new StoreContext())
-            {
-                var feed = new Feedback(5, "lilii maliii");
-                feed.Product = context.Products.First();
+            //using (var context = new StoreContext())
+            //{
+            //    var feed = new Feedback(5, "lilii maliii");
+            //    feed.Product = context.Products.First();
 
-                context.Feedbacks.Add(feed);
-                context.SaveChanges();
-            }
+            //    context.Feedbacks.Add(feed);
+            //    context.SaveChanges();
+            //}
         }
     }
 }

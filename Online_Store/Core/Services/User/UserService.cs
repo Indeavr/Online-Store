@@ -1,4 +1,5 @@
 ﻿using Bytes2you.Validation;
+using Online_Store.Core.Providers;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using Online_Store.Models;
@@ -14,18 +15,18 @@ namespace Online_Store.Core.Services
     {
         private IPasswordSecurityHasher hasher;
         private IStoreContext context;
+        private ILoggedUserProvider loggedUserProvider;
 
-        public UserService(IPasswordSecurityHasher hasher, IStoreContext context)
+        public UserService(IPasswordSecurityHasher hasher, IStoreContext context, ILoggedUserProvider loggedUserProvider)
         {
             Guard.WhenArgument(hasher, "passwordHasher").IsNull().Throw();
             Guard.WhenArgument(context, "context").IsNull().Throw();
+            Guard.WhenArgument(loggedUserProvider, "loggedUserProvider").IsNull().Throw();
 
             this.context = context;
             this.hasher = hasher;
-            this.LoggedUserId = -1;
+            this.loggedUserProvider = loggedUserProvider;
         }
-
-        public int LoggedUserId { get; set; }
 
 
         public string GeneratePasswordHash(string password)
@@ -83,7 +84,7 @@ namespace Online_Store.Core.Services
 
         public bool IsUserLogged()
         {
-            if (LoggedUserId == -1)
+            if (loggedUserProvider.CurrentUserId == -1)
             {
                 return false;
             }

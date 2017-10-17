@@ -16,15 +16,19 @@ namespace Online_Store.Commands.UserCommands
     {
         private IUserService userService;
         private IModelFactory factory;
+        private ILoggedUserProvider loggedUserProvider;
 
-        public CreateUserCommand(IModelFactory factory, IUserService userService, IStoreContext context, IWriter writer, IReader reader)
+        public CreateUserCommand(IModelFactory factory, IUserService userService, ILoggedUserProvider loggedUserProvider,
+            IStoreContext context, IWriter writer, IReader reader)
             : base(context, writer, reader)
         {
             Guard.WhenArgument(factory, "model factory").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
+            Guard.WhenArgument(loggedUserProvider, "loggedUserProvider").IsNull().Throw();
 
             this.factory = factory;
             this.userService = userService;
+            this.loggedUserProvider = loggedUserProvider;
         }
 
         public override string Execute(IList<string> parameters)
@@ -43,6 +47,8 @@ namespace Online_Store.Commands.UserCommands
 
             this.context.Users.Add(user);
             this.context.SaveChanges();
+
+            this.loggedUserProvider.CurrentUserId = this.context.Users.Single(u => u.Username == username).Id;
 
             return $"Created User \"{username}\" successfully";
         }

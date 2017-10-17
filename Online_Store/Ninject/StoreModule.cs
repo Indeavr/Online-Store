@@ -1,5 +1,6 @@
 ﻿using Ninject.Modules;
 using Online_Store.Commands;
+using Online_Store.Commands.SellerCommands;
 using Online_Store.Commands.UserCommands;
 using Online_Store.Core;
 using Online_Store.Core.Factories;
@@ -26,11 +27,14 @@ namespace Online_Store.Ninject
 
             this.Bind<IUserService>().To<UserService>().InSingletonScope().Named("userService");
             this.Bind<IPasswordSecurityHasher>().To<PasswordSecurityHasher>().Named("passwordHasher");
-            
+
+            this.Bind<ILoggedUserProvider>().To<LoggedUserProvider>().InSingletonScope();
+
             this.Bind<ICommand>().To<CreateUserCommand>().Named("createuser");
             this.Bind<ICommand>().To<UserLoginCommand>().Named("login");
             this.Bind<ICommand>().To<Logout>().Named("logout");
             this.Bind<ICommand>().To<BecomeSellerCommand>().Named("becomeseller");
+            this.Bind<ICommand>().To<ListAllProductsBySellerCommand>().Named("sellerProducts");
         }
     }
 }
