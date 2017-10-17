@@ -24,8 +24,8 @@ namespace Online_Store.Commands.UserCommands
 
         public override string Execute(IList<string> parameters)
         {
+            //add logout in user service
             this.userService.LoggedUserId = -1;
-
 
             return "Successfully loged out !";
         }
