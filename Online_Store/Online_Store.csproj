@@ -67,6 +67,8 @@
     <Compile Include="Commands\ProductCommands\EditProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\RemoveProductCommand.cs" />
     <Compile Include="Commands\SellerCommands\ListAllProductsBySellerCommand.cs" />
+    <Compile Include="Commands\SellerCommands\ListSellerFeedbackCommand.cs" />
+    <Compile Include="Commands\SellerCommands\UpdateProduct.cs" />
     <Compile Include="Commands\UserCommands\BecomeSellerCommand.cs" />
     <Compile Include="Commands\UserCommands\CreateUserCommand.cs" />
     <Compile Include="Commands\UserCommands\Logout.cs" />
