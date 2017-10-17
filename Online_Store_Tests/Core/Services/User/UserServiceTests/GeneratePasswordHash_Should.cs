@@ -19,11 +19,9 @@ namespace Online_Store_Tests.Core.Services.User.UserServiceTests
             var loggedUserMock = new Mock<ILoggedUserProvider>();
             string password = "test";
 
-<<<<<<< HEAD
+
             //var userService = new UserService(hasherMock.Object, contextMock.Object);
-=======
-            var userService = new UserService(hasherMock.Object, contextMock.Object, loggedUserMock.Object);
->>>>>>> 96e58c3ec079339cb2d2aa6d10f5d87410324c77
+
 
             ////Act
             //userService.GeneratePasswordHash(password);

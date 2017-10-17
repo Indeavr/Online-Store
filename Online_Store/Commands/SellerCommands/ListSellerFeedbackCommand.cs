@@ -22,7 +22,7 @@ namespace Online_Store.Commands.SellerCommands
             this.loggedUserProvider = loggedUserProvider;
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
             var feedbacks = this.context.Sellers
                           .Single(i => i.UserId == this.loggedUserProvider.CurrentUserId).Feedbacks;

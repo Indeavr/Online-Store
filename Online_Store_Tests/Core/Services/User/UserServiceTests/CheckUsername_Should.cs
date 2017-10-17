@@ -45,11 +45,9 @@ namespace Online_Store_Tests.Core.Services.User.UserServiceTests
 
             contextMock.Setup(m => m.Users).Returns(setMock.Object);
 
-<<<<<<< HEAD
+
             //var userService = new UserService(hasherMock.Object, contextMock.Object);
-=======
-            var userService = new UserService(hasherMock.Object, contextMock.Object, loggedUserMock.Object);
->>>>>>> 96e58c3ec079339cb2d2aa6d10f5d87410324c77
+
 
             //// Act && Assert
             //Assert.AreEqual(userService.CheckUsername(username), true);

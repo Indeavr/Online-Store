@@ -11,15 +11,11 @@ namespace Online_Store.Commands
 {
     public abstract class Command : ICommand
     {
-<<<<<<< HEAD
+
         protected readonly IStoreContext context;
-        private readonly IWriter writer;
-        private readonly IReader reader;
-=======
-        protected IStoreContext context;
-        protected IWriter writer;
-        protected IReader reader;
->>>>>>> 96e58c3ec079339cb2d2aa6d10f5d87410324c77
+        protected readonly IWriter writer;
+        protected readonly IReader reader;
+
 
         public Command(IStoreContext context, IWriter writer, IReader reader)
         {

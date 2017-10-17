@@ -22,7 +22,7 @@ namespace Online_Store.Commands.SellerCommands
             this.loggedUserProvider = loggedUserProvider;
         }
 
-        public override string Execute(IList<string> parameters)
+        public override string Execute()
         {
             //parameters = TakeInput();
             //int productId = int.Parse(parameters[0]);
