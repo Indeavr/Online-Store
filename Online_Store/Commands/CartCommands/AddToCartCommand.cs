@@ -38,6 +38,8 @@ namespace Online_Store.Commands.CartCommands
             
             cart.Products.Add(product);
 
+            this.context.Carts.Add(cart);
+
             return $"Product successfully added to cart";
         }
 
