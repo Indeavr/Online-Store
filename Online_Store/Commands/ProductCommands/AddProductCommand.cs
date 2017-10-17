@@ -1,6 +1,7 @@
 ﻿using Online_Store.Core.Providers;
 using Online_Store.Data;
 using Online_Store.Models;
+using Online_Store.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,10 +56,130 @@ namespace Online_Store.Commands.ProductCommands
 
         private IList<string> TakeInput()
         {
-            string forWellcome = string.Format("{0}\n{1}", CommandDescription(), "ProductName (case insensitive):");
-            var productName = base.ReadOneLine(forWellcome);
+            string productName = base.ReadOneLine("Enter product`s name:").ToLower();
+            string price = base.ReadOneLine("Enter price:");
+            while (true)
+            {
+                try
+                {
+                    decimal test = decimal.Parse(price);
+                    if (test < 0)
+                    {
+                        throw new ArgumentException("Price cannot be negative number.");
+                    }
+                    break;
+                }
+                catch
+                {
+                    price = base.ReadOneLine("Invalid price, try again:");
+                }
+            }
+            string category = base.ReadOneLine("Enter category").ToLower();
 
-            return new List<string>() { productName.ToLower() };
+            string[] paymentMethodsList = new string[] { "Cash", "VPay", "Visa", "MasterCard", "Kidney" };
+
+            string paymentMethod = base.ReadOneLine(string.Format("{0}\n{1}",
+            "Select payment method from list:", string.Join(" ", paymentMethodsList))).ToLower();
+            while (true)
+            {
+                try
+                {
+                    PaymentMethodEnum test = (PaymentMethodEnum)Enum.Parse(typeof(PaymentMethodEnum), paymentMethod, true);
+                    foreach (string item in paymentMethodsList)
+                    {
+                        PaymentMethodEnum testEnum = (PaymentMethodEnum)Enum.Parse(typeof(PaymentMethodEnum), item, true);
+                        if (test != testEnum)
+                        {
+                            throw new ArgumentException("Invalid payment method.");
+                        }
+                    }
+                    break;
+                }
+                catch
+                {
+                    paymentMethod = base.ReadOneLine("Invalid payment method. Try again:").ToLower();
+                }
+            }
+
+            string shippingDetailsCost = base.ReadOneLine("Select shipping details cost:");
+            while (true)
+            {
+                try
+                {
+                    decimal test = decimal.Parse(shippingDetailsCost);
+                    if (test < 0)
+                    {
+                        throw new ArgumentException("Price cannot be negative number.");
+                    }
+                    break;
+                }
+                catch
+                {
+                    price = base.ReadOneLine("Invalid price, try again:");
+                }
+            }
+
+            string shippingDetailsDeliveryTIme = base.ReadOneLine("Select shipping details delivery time in hours (integer):");
+            while (true)
+            {
+                try
+                {
+                    int test = int.Parse(shippingDetailsDeliveryTIme);
+                    if (test < 0)
+                    {
+                        throw new ArgumentException("Delivery time cannot be negative number.");
+                    }
+                    break;
+                }
+                catch
+                {
+                    shippingDetailsDeliveryTIme = base.ReadOneLine("Invalid delivery time, try again:");
+                }
+            }
+
+            string saleBool = base.ReadOneLine("Is it true, this product is on sale? [true]/[false]").ToLower();
+            string priceReduction = null;
+            while (true)
+            {
+                try
+                {
+                    bool isOnSale = bool.Parse(saleBool);
+                    if (isOnSale)
+                    {
+                        priceReduction = base.ReadOneLine("Enter price reduction in [%]:");
+                        while (true)
+                        {
+                            try
+                            {
+                                decimal test = decimal.Parse(priceReduction);
+                                if (test < 0)
+                                {
+                                    throw new ArgumentException("Reduction cannot be negative number.");
+                                }
+                                break;
+                            }
+                            catch
+                            {
+                                priceReduction = base.ReadOneLine("Please enter the price reduction in [%]:");
+                            }
+                        }
+                    }
+                    break;
+                }
+                catch
+                {
+                    saleBool = base.ReadOneLine("Please enter [true] or [false]").ToLower();
+                }
+            }
+
+            return new List<string>() {
+                productName.ToLower(),
+                price,
+                category.ToLower(),
+                paymentMethod,
+                shippingDetailsCost,
+                shippingDetailsDeliveryTIme,
+                priceReduction };
         }
     }
 }
