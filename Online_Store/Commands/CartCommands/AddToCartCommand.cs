@@ -16,7 +16,7 @@ namespace Online_Store.Commands.CartCommands
         private IModelFactory factory;
 
 
-        public AddToCartCommand(IModelFactory factory, IStoreContext context, IWriter writer, IReader reader, ICart cart, IProduct product)
+        public AddToCartCommand(IModelFactory factory, IStoreContext context, IWriter writer, IReader reader)
             : base(context, writer, reader)
         {
             this.factory = factory;
@@ -37,6 +37,8 @@ namespace Online_Store.Commands.CartCommands
             //cart.Product = product;
             
             cart.Products.Add(product);
+
+            this.context.Carts.Add(cart);
 
             return $"Product successfully added to cart";
         }
