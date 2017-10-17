@@ -9,11 +9,19 @@ namespace Online_Store.Models
         {
         }
 
+        public Sale(int priceReduction)
+        {
+            this.PriceReduction = priceReduction;
+        }
+
+        [Required]
         [Key, ForeignKey("Product")]
         public int ProductId { get; set; }
 
+        [Required]
         public virtual Product Product { get; set; }
 
+        [Required]
         public int PriceReduction { get; set; }
     }
 }

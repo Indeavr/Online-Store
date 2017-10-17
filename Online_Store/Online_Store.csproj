@@ -78,9 +78,11 @@
     <Compile Include="Core\Providers\ConsoleReader.cs" />
     <Compile Include="Core\Providers\ConsoleWriter.cs" />
     <Compile Include="Core\Providers\DateTimeProvider\DateTimeProvider.cs" />
+    <Compile Include="Core\Providers\ILoggedUserProvider.cs" />
     <Compile Include="Core\Providers\IParser.cs" />
     <Compile Include="Core\Providers\IReader.cs" />
     <Compile Include="Core\Providers\IWriter.cs" />
+    <Compile Include="Core\Providers\LoggedUserProvider.cs" />
     <Compile Include="Core\Services\Product\IProductService.cs" />
     <Compile Include="Core\Services\Product\ProductService.cs" />
     <Compile Include="Core\Services\User\IPasswordSecurityHasher.cs" />
@@ -89,9 +91,9 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710171040538_DbInitial.cs" />
-    <Compile Include="Migrations\201710171040538_DbInitial.Designer.cs">
-      <DependentUpon>201710171040538_DbInitial.cs</DependentUpon>
+    <Compile Include="Migrations\201710171852493_Online_Store_Initial.cs" />
+    <Compile Include="Migrations\201710171852493_Online_Store_Initial.Designer.cs">
+      <DependentUpon>201710171852493_Online_Store_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -112,8 +114,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710171040538_DbInitial.resx">
-      <DependentUpon>201710171040538_DbInitial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710171852493_Online_Store_Initial.resx">
+      <DependentUpon>201710171852493_Online_Store_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

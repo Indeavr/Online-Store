@@ -23,9 +23,9 @@ namespace Online_Store.Models
         [Required]
         public string Password { get; set; }
 
-        public virtual Cart Cart { get; set; }
+        public int? CardId { get; set; }
 
-        //public virtual Order Order { get; set; }
+        public virtual Cart Cart { get; set; }
 
         public virtual Seller Seller { get; set; }
     }

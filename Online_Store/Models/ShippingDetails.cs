@@ -9,12 +9,19 @@ namespace Online_Store.Models
         {
         }
 
-        [Key, ForeignKey("Product")]
-        public int ProductId { get; set; }
+        public ShippingDetails(decimal cost, int? deliveryTime = null)
+        {
+            this.Cost = cost;
+            this.DeliveryTime = deliveryTime;
+        }
 
+        [Required]
         public decimal Cost { get; set; }
 
-        public int DeliveryTIme { get; set; }
+        public int? DeliveryTime { get; set; }
+
+        [Key, ForeignKey("Product")]
+        public int ProductId { get; set; }
 
         public Product Product { get; set; }
     }
