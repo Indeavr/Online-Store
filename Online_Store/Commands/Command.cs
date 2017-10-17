@@ -12,8 +12,8 @@ namespace Online_Store.Commands
     public abstract class Command : ICommand
     {
         protected IStoreContext context;
-        private IWriter writer;
-        private IReader reader;
+        protected IWriter writer;
+        protected IReader reader;
 
         public Command(IStoreContext context, IWriter writer, IReader reader)
         {

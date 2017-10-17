@@ -34,10 +34,10 @@ namespace Online_Store.Migrations
 
             using (StreamReader r = new StreamReader(@"../../../UserInfo.json"))
             {
-                string json = r.ReadToEnd();
-                var user = JsonConvert.DeserializeObject<User>(json);
                 if (!context.Users.Any())
                 {
+                    string json = r.ReadToEnd();
+                    var user = JsonConvert.DeserializeObject<User>(json);
                     context.Users.Add(user);
                     context.SaveChanges();
                 }

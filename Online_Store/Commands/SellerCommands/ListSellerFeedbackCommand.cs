@@ -1,19 +1,19 @@
-﻿using Bytes2you.Validation;
-using Online_Store.Core.Providers;
-using Online_Store.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Online_Store.Core.Providers;
+using Online_Store.Data;
+using Bytes2you.Validation;
 
 namespace Online_Store.Commands.SellerCommands
 {
-    public class ListAllProductsBySellerCommand : Command, ICommand
+    public class ListSellerFeedbackCommand : Command, ICommand
     {
         private ILoggedUserProvider loggedUserProvider;
 
-        public ListAllProductsBySellerCommand(ILoggedUserProvider loggedUserProvider, IStoreContext context,
+        public ListSellerFeedbackCommand(ILoggedUserProvider loggedUserProvider, IStoreContext context,
             IWriter writer, IReader reader)
             : base(context, writer, reader)
         {
@@ -22,20 +22,19 @@ namespace Online_Store.Commands.SellerCommands
             this.loggedUserProvider = loggedUserProvider;
         }
 
-     
         public override string Execute(IList<string> parameters)
         {
-            var products = this.context.Sellers
-                            .Single(i => i.UserId == this.loggedUserProvider.CurrentUserId).Products;
-            if (products.Count == 0)
+            var feedbacks = this.context.Sellers
+                          .Single(i => i.UserId == this.loggedUserProvider.CurrentUserId).Feedbacks;
+            if (feedbacks.Count == 0)
             {
                 return "You aren't selling any products!";
             }
 
             StringBuilder result = new StringBuilder();
-            foreach (var product in products)
+            foreach (var feedback in feedbacks)
             {
-                result.Append(product.ToString());
+                result.Append(feedback.ToString());
             }
 
             return result.ToString();
