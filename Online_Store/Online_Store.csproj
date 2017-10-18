@@ -99,15 +99,9 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-<<<<<<< HEAD
-    <Compile Include="Migrations\201710182029186_traveller.cs" />
-    <Compile Include="Migrations\201710182029186_traveller.Designer.cs">
-      <DependentUpon>201710182029186_traveller.cs</DependentUpon>
-=======
     <Compile Include="Migrations\201710182228467_Online_Store_Initial.cs" />
     <Compile Include="Migrations\201710182228467_Online_Store_Initial.Designer.cs">
       <DependentUpon>201710182228467_Online_Store_Initial.cs</DependentUpon>
->>>>>>> 444d677fa9182b819e4192e8d3340511311a14c8
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -128,13 +122,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\201710182029186_traveller.resx">
-      <DependentUpon>201710182029186_traveller.cs</DependentUpon>
-=======
     <EmbeddedResource Include="Migrations\201710182228467_Online_Store_Initial.resx">
       <DependentUpon>201710182228467_Online_Store_Initial.cs</DependentUpon>
->>>>>>> 444d677fa9182b819e4192e8d3340511311a14c8
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
