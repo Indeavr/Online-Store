@@ -3,7 +3,7 @@ namespace Online_Store.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class pesho : DbMigration
+    public partial class Online_Store_Initial : DbMigration
     {
         public override void Up()
         {
@@ -101,7 +101,7 @@ namespace Online_Store.Migrations
                         DeliveryTime = c.Int(),
                     })
                 .PrimaryKey(t => t.ProductId)
-                .ForeignKey("dbo.Products", t => t.ProductId)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
                 .Index(t => t.ProductId);
             
             CreateTable(

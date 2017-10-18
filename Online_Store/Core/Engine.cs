@@ -32,7 +32,7 @@ namespace Online_Store.Core
         {
             while (true)
             {
-               // try
+                try
                 {
                     var commandAsString = this.reader.ReadLine().ToLower();
 
@@ -44,10 +44,10 @@ namespace Online_Store.Core
                     string result = this.ProcessCommand(commandAsString);
                     this.writer.WriteLine(result);
                 }
-                //catch (Exception ex)
-                //{
-                //    this.writer.WriteLine(ex.Message);
-                //}
+                catch (Exception ex)
+                {
+                    this.writer.WriteLine(ex.Message);
+                }
             }
         }
 

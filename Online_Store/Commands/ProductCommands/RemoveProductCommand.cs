@@ -36,19 +36,16 @@ namespace Online_Store.Commands.ProductCommands
             }
             
             IList<string> parameters = TakeInput();
-            string productName = parameters[0];
-            if (!this.context.Products.Any(x => x.ProductName == productName))
-            {
-                throw new ArgumentException("Product does not exist.");
-            }
-            return this.productService.RemoveProductWithName(productName);
+            string productId = parameters[0];
+            
+            return this.productService.RemoveProductWithName(productId);
         }
 
         private IList<string> TakeInput()
         {
-            var productName = base.ReadOneLine("Specify a product name to remove (case insensitive): ");
+            var productName = base.ReadOneLine("Specify a product id to remove: ");
 
-            return new List<string>() { productName.ToLower() };
+            return new List<string>() { productName };
         }
     }
 }

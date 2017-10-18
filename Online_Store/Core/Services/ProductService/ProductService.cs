@@ -139,20 +139,31 @@ namespace Online_Store.Core.ProductServices
             throw new NotImplementedException();
         }
 
-        public string RemoveProductWithName(string productName)
+        public string RemoveProductWithName(string productId)
         {
-            if (!this.context.Products.Any(x=>x.ProductName == productName))
+            int id;
+            try
             {
-                return "Product does not exist.";
+                id = int.Parse(productId);
+            }
+            catch (Exception ex)
+            {
+                return "ProductId Must be Int!";
+            }
+
+            if (!this.context.Products.Any(x=>x.Id == id))
+            {
+                throw new ArgumentException("Product does not exist.");
             }
 
             Product product = this.modelFactory.CreateProduct();
 
             try
             {
-                product.Id = this.context.Products.Single(x=>x.ProductName == productName).Id;
+                product.Id = id;
+               // product.Id = this.context.Products.Single(x=>x.ProductName == productName).Id;
             }
-            catch
+            catch(Exception ex)
             {
                 return "There were more than one products with that name. No product was removed.";
             }

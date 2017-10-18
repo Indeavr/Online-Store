@@ -7,13 +7,13 @@ namespace Online_Store.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class pesho : IMigrationMetadata
+    public sealed partial class Online_Store_Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(pesho));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Online_Store_Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710181704381_pesho"; }
+            get { return "201710181632579_Online_Store_Initial"; }
         }
         
         string IMigrationMetadata.Source

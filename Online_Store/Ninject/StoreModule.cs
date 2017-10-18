@@ -39,6 +39,8 @@ namespace Online_Store.Ninject
             this.Bind<ICommand>().To<UserLoginCommand>().Named("login");
             this.Bind<ICommand>().To<Logout>().Named("logout");
             this.Bind<ICommand>().To<BecomeSellerCommand>().Named("becomeseller");
+            this.Bind<ICommand>().To<UpdateProduct>().Named("updateproduct");
+
             this.Bind<ICommand>().To<ListAllProductsBySellerCommand>().Named("sellerProducts");
 
             this.Bind<ICommand>().To<AddToCartCommand>().Named("addtocart");

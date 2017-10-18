@@ -37,11 +37,11 @@ namespace Online_Store.Data
             //    .WithMany()
             //    .WillCascadeOnDelete(false);
 
-            //modelBuilder.Entity<Product>()
-            //    .HasRequired(t => t.ShippingDetails)
-            //    .WithRequiredPrincipal(t => t.Product)
-            //    .WillCascadeOnDelete(true);
-            
+            modelBuilder.Entity<Product>()
+                .HasRequired(t => t.ShippingDetails)
+                .WithRequiredPrincipal(t => t.Product)
+                .WillCascadeOnDelete(true);
+
             base.OnModelCreating(modelBuilder);
         }
     }
