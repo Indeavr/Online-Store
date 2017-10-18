@@ -1,4 +1,5 @@
 ﻿using Bytes2you.Validation;
+using Online_Store.Core.Factories;
 using Online_Store.Core.Providers;
 using Online_Store.Data;
 using Online_Store.Models;
@@ -14,15 +15,19 @@ namespace Online_Store.Core.ProductServices
         private readonly IStoreContext context;
         private readonly ILoggedUserProvider loggedUserProvider;
         private readonly IWriter writer;
+        private readonly IModelFactory modelFactory;
 
-        public ProductService(IStoreContext context, ILoggedUserProvider loggedUserProvider, IWriter writer)
+        public ProductService(IStoreContext context, ILoggedUserProvider loggedUserProvider, IWriter writer,
+            IModelFactory modelFactory)
         {
             Guard.WhenArgument(context, "context").IsNull().Throw();
             Guard.WhenArgument(loggedUserProvider, "loggedUserProvider").IsNull().Throw();
             Guard.WhenArgument(writer, "writer").IsNull().Throw();
+            Guard.WhenArgument(modelFactory, "modelFactory").IsNull().Throw();
             this.context = context;
             this.loggedUserProvider = loggedUserProvider;
             this.writer = writer;
+            this.modelFactory = modelFactory;
         }
 
         public string AddProduct(IList<string> parameters)
@@ -39,6 +44,10 @@ namespace Online_Store.Core.ProductServices
             {
                 //validation
                 productName = parameters[0].ToLower();
+                if (this.context.Products.Any(x => x.ProductName == productName))
+                {
+                    return "Product already exists.";
+                }
                 price = decimal.Parse(parameters[1]);
                 if (price < 0)
                 {
@@ -68,7 +77,7 @@ namespace Online_Store.Core.ProductServices
             }
             catch
             {
-                throw new ArgumentException("One or more parameters for the AddProduct command are invalid.");
+                return "One or more parameters for the AddProduct command are invalid.";
             }
 
             Product product = new Product();
@@ -78,24 +87,27 @@ namespace Online_Store.Core.ProductServices
             product.PaymentMethod = paymentMethod;
             product.Instock = true;
             product.SellerId = this.loggedUserProvider.CurrentUserId;
-            
+
             if (this.context.Categories.Any(x => x.CategoryName == category))
             {
                 product.Categories.Add(this.context.Categories.First(x => x.CategoryName == category));
             }
             else
             {
-                product.Categories.Add(new Category() { CategoryName = category });
+                Category newCategory = this.modelFactory.CreateCategory();
+                newCategory.CategoryName = category;
+                product.Categories.Add(newCategory);
             }
 
-            product.ShippingDetails = new ShippingDetails()
-            {
-                DeliveryTime = shippingDetailsDeliveryTIme,
-                Cost = shippingDetailsCost
-            };
+            ShippingDetails newShippingDetails = modelFactory.CreateShippingDetails();
+            newShippingDetails.DeliveryTime = shippingDetailsDeliveryTIme;
+            newShippingDetails.Cost = shippingDetailsCost;
+            product.ShippingDetails = newShippingDetails;
 
             //fix this to decimal
-            product.Sale = new Sale() { PriceReduction = (int)priceReduction };
+            Sale newSale = this.modelFactory.CreateSale();
+            newSale.PriceReduction = (int)priceReduction;
+            product.Sale = newSale;
 
             //useless
             //product.Seller = this.context.Sellers.Single(x => x.UserId == this.loggedUserProvider.CurrentUserId);
@@ -112,26 +124,35 @@ namespace Online_Store.Core.ProductServices
             return "penka";
         }
 
+        public string ListAllProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ListFeedbacksFromProduct(string productName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ListProductsByCategory(string categoryName)
+        {
+            throw new NotImplementedException();
+        }
+
         public string RemoveProductWithName(string productName)
         {
-            foreach (Category category in this.context.Categories)
-            {
-                foreach (Product product in category.Products)
-                {
-
-                }
-            }
-
+            
             try
             {
                 Product product = this.context.Products.Single(x => x.ProductName.ToLower() == productName.ToLower());
                 this.context.Products.Remove(product);
+                this.context.SaveChanges();
                 return "Product successfuly removed.";
             }
             catch
             {
                 //several cases to handle
-                return "Product doesn`t exist or several other reasons.";
+                return "TOFIX: Product doesn`t exist or several other reasons.";
             }
         }
     }

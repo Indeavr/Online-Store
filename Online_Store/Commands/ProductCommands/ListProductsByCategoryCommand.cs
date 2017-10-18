@@ -3,19 +3,21 @@ using Online_Store.Core.ProductServices;
 using Online_Store.Core.Providers;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
-using Online_Store.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Online_Store.Commands.ProductCommands
 {
-    public class RemoveProductCommand : Command
+    public class ListProductsByCategoryCommand : Command
     {
         private readonly IProductService productService;
         private readonly IUserService userService;
         private readonly ILoggedUserProvider loggedUserProvider;
 
-        public RemoveProductCommand(IStoreContext context, IWriter writer, IReader reader,
+        public ListProductsByCategoryCommand(IStoreContext context, IWriter writer, IReader reader,
             IProductService productService, IUserService userService, ILoggedUserProvider loggedUserProvider)
             : base(context, writer, reader)
         {
@@ -34,17 +36,21 @@ namespace Online_Store.Commands.ProductCommands
                 return "You must Login First!";
             }
 
-            IList<string> parameters = TakeInput();
-            string productName = parameters[0];
+            string categoryToList = TakeInput();
 
-            return this.productService.RemoveProductWithName(productName);
+            return this.productService.ListFeedbacksFromProduct(categoryToList);
         }
 
-        private IList<string> TakeInput()
+        private string TakeInput()
         {
-            var productName = base.ReadOneLine("Specify a product name to remove (case insensitive): ");
+            string categoryToList = base.ReadOneLine("For which category to list the products: ").ToLower();
 
-            return new List<string>() { productName.ToLower() };
+            if (!base.context.Categories.Any(x=>x.CategoryName==categoryToList))
+            {
+                throw new ArgumentException("Category does not exist.");
+            }
+
+            return categoryToList;
         }
     }
 }

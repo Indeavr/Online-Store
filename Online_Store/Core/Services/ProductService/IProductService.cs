@@ -11,5 +11,8 @@ namespace Online_Store.Core.ProductServices
         string AddProduct(IList<string> parameters);
         string EditProduct(IList<string> parameters);
         string RemoveProductWithName(string productName);
+        string ListAllProducts();
+        string ListFeedbacksFromProduct(string productName);
+        string ListProductsByCategory(string categoryName);
     }
 }

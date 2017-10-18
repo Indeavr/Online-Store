@@ -88,6 +88,16 @@ namespace Online_Store.Models
             }
         }
 
+        public override string ToString()
+        {
+            string productAsString = string.Format(
+                "Product: {0}\nPrice: {1}\nAdded on: {2}\nPayment method: {3}\nIn stock: {4}",
+                this.ProductName, this.Price, this.Date.ToString(),
+                this.PaymentMethod.ToString(), this.Instock.ToString());
+            
+            return productAsString;
+        }
+
         //public object this[string propertyName]
         //{
         //    get

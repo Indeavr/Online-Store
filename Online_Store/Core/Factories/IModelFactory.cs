@@ -16,5 +16,11 @@ namespace Online_Store.Core.Factories
         Cart CreateCart();
 
         Product CreateProduct();
+
+        Category CreateCategory();
+
+        ShippingDetails CreateShippingDetails();
+
+        Sale CreateSale();
     }
 }

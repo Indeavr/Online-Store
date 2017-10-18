@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using Online_Store.Core.ProductServices;
 using Online_Store.Core.Providers;
+using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,28 @@ namespace Online_Store.Commands.ProductCommands
     public class AddProductCommand : Command
     {
         private readonly IProductService productService;
+        private readonly IUserService userService;
+        private readonly ILoggedUserProvider loggedUserProvider;
 
         public AddProductCommand(IStoreContext context, IWriter writer, IReader  reader,
-            IProductService productService)
+            IProductService productService, IUserService userService, ILoggedUserProvider loggedUserProvider)
             : base(context, writer, reader)
         {
             Guard.WhenArgument(productService, "productService").IsNull().Throw();
+            Guard.WhenArgument(userService, "userService").IsNull().Throw();
+            Guard.WhenArgument(loggedUserProvider, "loggedUserProvider").IsNull().Throw();
             this.productService = productService;
+            this.userService = userService;
+            this.loggedUserProvider = loggedUserProvider;
         }
 
         public override string Execute()
         {
+            if (!this.userService.IsUserLogged())
+            {
+                return "You must Login First!";
+            }
+
             IList<string> parameters = TakeInput();
 
             return this.productService.AddProduct(parameters);
@@ -30,6 +42,10 @@ namespace Online_Store.Commands.ProductCommands
         private IList<string> TakeInput()
         {
             string productName = base.ReadOneLine("Enter product`s name: ").ToLower();
+            if (base.context.Products.Any(x=>x.ProductName == productName))
+            {
+                throw new ArgumentException("Product already exists.");
+            }
             string price = base.ReadOneLine("Enter price: ");
             while (true)
             {

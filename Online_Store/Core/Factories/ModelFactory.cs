@@ -28,5 +28,19 @@ namespace Online_Store.Core.Factories
         {
             return new Product();
         }
+
+        public Category CreateCategory()
+        {
+            return new Category();
+        }
+        public ShippingDetails CreateShippingDetails()
+        {
+            return new ShippingDetails();
+        }
+
+        public Sale CreateSale()
+        {
+            return new Sale();
+        }
     }
 }

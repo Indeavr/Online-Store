@@ -65,6 +65,9 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\EditProductCommand.cs" />
+    <Compile Include="Commands\ProductCommands\ListAllProductsCommand.cs" />
+    <Compile Include="Commands\ProductCommands\ListFeedbacksForProductCommand.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsByCategoryCommand.cs" />
     <Compile Include="Commands\ProductCommands\RemoveProductCommand.cs" />
     <Compile Include="Commands\SellerCommands\ListAllProductsBySellerCommand.cs" />
     <Compile Include="Commands\SellerCommands\ListSellerFeedbackCommand.cs" />

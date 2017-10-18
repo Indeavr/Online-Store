@@ -32,10 +32,7 @@ namespace Online_Store.Data
                         .WithMany()
                         .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Product>()
-                .HasRequired(s => s.Seller)
-                .WithMany()
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Product>().HasRequired(s => s.Seller).WithMany().WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }
