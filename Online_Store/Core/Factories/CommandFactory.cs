@@ -22,6 +22,7 @@ namespace Online_Store.Core.Factories
             Guard.WhenArgument(kernel, "kernel").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
             Guard.WhenArgument(writer, "writer").IsNull().Throw();
+
             this.kernel = kernel;
             this.userService = userService;
             this.writer = writer;
@@ -29,16 +30,16 @@ namespace Online_Store.Core.Factories
 
         public ICommand CreateCommand(string commandName)
         {
-            //edited here
-            if (this.userService.IsUserLogged())
-            {
-                return this.kernel.Get<ICommand>(commandName);
-            }
-            else
-            {
-                this.writer.WriteLine("Login first...");
-                return this.kernel.Get<ICommand>("login");
-            }
+            ////edited here
+            //if (this.userService.IsUserLogged())
+            //{
+            return this.kernel.Get<ICommand>(commandName);
+            //}
+            //else
+            //{
+            //    this.writer.WriteLine("Login first...");
+            //    return this.kernel.Get<ICommand>("login");
+            //}
         }
     }
 }

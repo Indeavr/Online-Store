@@ -46,11 +46,11 @@ namespace Online_Store_Tests.Core.Services.User.UserServiceTests
             contextMock.Setup(m => m.Users).Returns(setMock.Object);
 
 
-            //var userService = new UserService(hasherMock.Object, contextMock.Object);
+            var userService = new UserService(hasherMock.Object, contextMock.Object, loggedUserMock.Object);
 
 
             //// Act && Assert
-            //Assert.AreEqual(userService.CheckUsername(username), true);
+            Assert.AreEqual(userService.CheckUsername(username), true);
         }
     }
 }

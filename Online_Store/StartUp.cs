@@ -15,10 +15,10 @@ namespace Online_Store
         public static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StoreContext, Configuration>());
-            using (var context = new StoreContext())
-            {
-                var databaseMaterialization = context.Users.ToList();
-            }
+            //using (var context = new StoreContext())
+            //{
+            //    var databaseMaterialization = context.Users.ToList();
+            //}
 
             IKernel kernel = new StandardKernel(new StoreModule());
 
@@ -30,7 +30,7 @@ namespace Online_Store
             //    var product = new Product("name2", 20.12m, PaymentMethodEnum.Cash);
             //    var shipD = new ShippingDetails(20m);
             //    product.ShippingDetails = shipD;
-            //    product.SellerId = 1;
+            //    //product.SellerId = 1;
             //    product.Seller = context.Users.Single(i => i.Id == 1).Seller;
 
             //    context.Products.Add(product);

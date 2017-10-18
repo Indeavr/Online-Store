@@ -12,7 +12,7 @@ namespace Online_Store.Commands.ProductCommands
     {
         private readonly IProductService productService;
 
-        public AddProductCommand(IStoreContext context, IWriter writer, IReader reader,
+        public AddProductCommand(IStoreContext context, IWriter writer, IReader  reader,
             IProductService productService)
             : base(context, writer, reader)
         {
@@ -140,14 +140,16 @@ namespace Online_Store.Commands.ProductCommands
                 }
             }
 
-            return new List<string>() {
+            return new List<string>()
+            {
                 productName.ToLower(),
                 price,
                 category.ToLower(),
                 paymentMethod,
                 shippingDetailsCost,
                 shippingDetailsDeliveryTIme,
-                priceReduction };
+                priceReduction
+            };
         }
     }
 }

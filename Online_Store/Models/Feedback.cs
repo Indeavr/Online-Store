@@ -27,7 +27,6 @@ namespace Online_Store.Models
 
         public int UserId { get; set; }
 
-        [ForeignKey("Product")]
         public int? ProductId { get; set; }
 
         public virtual Product Product { get; set; }
