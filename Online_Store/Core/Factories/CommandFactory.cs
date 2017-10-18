@@ -30,16 +30,14 @@ namespace Online_Store.Core.Factories
 
         public ICommand CreateCommand(string commandName)
         {
-            ////edited here
-            //if (this.userService.IsUserLogged())
-            //{
-            return this.kernel.Get<ICommand>(commandName);
-            //}
-            //else
-            //{
-            //    this.writer.WriteLine("Login first...");
-            //    return this.kernel.Get<ICommand>("login");
-            //}
+            try
+            {
+                return this.kernel.Get<ICommand>(commandName);
+            }
+            catch
+            {
+                return this.kernel.Get<ICommand>("emptycommand");
+            }
         }
     }
 }

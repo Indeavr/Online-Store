@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
 using Online_Store.Commands;
 using Online_Store.Commands.CartCommands;
+using Online_Store.Commands.EmptyCommand;
 using Online_Store.Commands.FeedbackCommands;
 using Online_Store.Commands.ProductCommands;
 using Online_Store.Commands.SellerCommands;
@@ -50,6 +51,8 @@ namespace Online_Store.Ninject
             this.Bind<ICommand>().To<AddProductCommand>().Named("addproduct");
             //this.Bind<ICommand>().To<EditProductCommand>().Named("editproduct");
             this.Bind<ICommand>().To<RemoveProductCommand>().Named("removeproduct");
+
+            this.Bind<ICommand>().To<EmptyCommand>().Named("emptycommand");
         }
     }
 }

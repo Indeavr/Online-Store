@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Online_Store.Data
 {
-    public interface IStoreContext : IDisposable, IObjectContextAdapter
+    public interface IStoreContext
     {
         IDbSet<User> Users { get; set; }
         IDbSet<Seller> Sellers { get; set; }
