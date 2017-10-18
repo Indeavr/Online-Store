@@ -34,6 +34,11 @@ namespace Online_Store.Commands.ProductCommands
                 return "You must Login First!";
             }
 
+            if (!this.context.Sellers.Any(x => x.UserId == loggedUserProvider.CurrentUserId))
+            {
+                return "Can`t add products if you are not a seller.";
+            }
+
             IList<string> parameters = TakeInput();
 
             return this.productService.AddProduct(parameters);

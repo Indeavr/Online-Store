@@ -15,10 +15,10 @@ namespace Online_Store
         public static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StoreContext, Configuration>());
-            //using (var context = new StoreContext())
-            //{
-            //    var databaseMaterialization = context.Users.ToList();
-            //}
+            using (var context = new StoreContext())
+            {
+                var databaseMaterialization = context.Users.ToList();
+            }
 
             IKernel kernel = new StandardKernel(new StoreModule());
 

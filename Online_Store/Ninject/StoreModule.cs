@@ -46,7 +46,7 @@ namespace Online_Store.Ninject
             this.Bind<ICommand>().To<AddFeedbackCommand>().Named("addfeedback");
 
             this.Bind<ICommand>().To<AddProductCommand>().Named("addproduct");
-            this.Bind<ICommand>().To<EditProductCommand>().Named("editproduct");
+            //this.Bind<ICommand>().To<EditProductCommand>().Named("editproduct");
             this.Bind<ICommand>().To<RemoveProductCommand>().Named("removeproduct");
         }
     }

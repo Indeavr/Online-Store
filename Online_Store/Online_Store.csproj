@@ -98,9 +98,9 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710181415272_Online_Store_Initial.cs" />
-    <Compile Include="Migrations\201710181415272_Online_Store_Initial.Designer.cs">
-      <DependentUpon>201710181415272_Online_Store_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201710181704381_pesho.cs" />
+    <Compile Include="Migrations\201710181704381_pesho.Designer.cs">
+      <DependentUpon>201710181704381_pesho.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -121,8 +121,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710181415272_Online_Store_Initial.resx">
-      <DependentUpon>201710181415272_Online_Store_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710181704381_pesho.resx">
+      <DependentUpon>201710181704381_pesho.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

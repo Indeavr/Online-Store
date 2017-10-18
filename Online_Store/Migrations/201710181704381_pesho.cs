@@ -3,7 +3,7 @@ namespace Online_Store.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Online_Store_Initial : DbMigration
+    public partial class pesho : DbMigration
     {
         public override void Up()
         {
@@ -26,13 +26,10 @@ namespace Online_Store.Migrations
                         PaymentMethod = c.Int(nullable: false),
                         SellerId = c.Int(nullable: false),
                         Instock = c.Boolean(nullable: false),
-                        Seller_UserId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Sellers", t => t.Seller_UserId)
-                .ForeignKey("dbo.Sellers", t => t.SellerId)
-                .Index(t => t.SellerId)
-                .Index(t => t.Seller_UserId);
+                .ForeignKey("dbo.Sellers", t => t.SellerId, cascadeDelete: true)
+                .Index(t => t.SellerId);
             
             CreateTable(
                 "dbo.Categories",
@@ -54,15 +51,12 @@ namespace Online_Store.Migrations
                         UserId = c.Int(nullable: false),
                         ProductId = c.Int(),
                         SellerId = c.Int(),
-                        Seller_UserId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Products", t => t.ProductId)
-                .ForeignKey("dbo.Sellers", t => t.Seller_UserId)
                 .ForeignKey("dbo.Sellers", t => t.SellerId)
                 .Index(t => t.ProductId)
-                .Index(t => t.SellerId)
-                .Index(t => t.Seller_UserId);
+                .Index(t => t.SellerId);
             
             CreateTable(
                 "dbo.Sellers",
@@ -146,8 +140,6 @@ namespace Online_Store.Migrations
             DropForeignKey("dbo.Feedbacks", "SellerId", "dbo.Sellers");
             DropForeignKey("dbo.Sellers", "UserId", "dbo.Users");
             DropForeignKey("dbo.Users", "CartId", "dbo.Carts");
-            DropForeignKey("dbo.Products", "Seller_UserId", "dbo.Sellers");
-            DropForeignKey("dbo.Feedbacks", "Seller_UserId", "dbo.Sellers");
             DropForeignKey("dbo.Feedbacks", "ProductId", "dbo.Products");
             DropForeignKey("dbo.CategoryProducts", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.CategoryProducts", "Category_Id", "dbo.Categories");
@@ -161,10 +153,8 @@ namespace Online_Store.Migrations
             DropIndex("dbo.Sales", new[] { "ProductId" });
             DropIndex("dbo.Users", new[] { "CartId" });
             DropIndex("dbo.Sellers", new[] { "UserId" });
-            DropIndex("dbo.Feedbacks", new[] { "Seller_UserId" });
             DropIndex("dbo.Feedbacks", new[] { "SellerId" });
             DropIndex("dbo.Feedbacks", new[] { "ProductId" });
-            DropIndex("dbo.Products", new[] { "Seller_UserId" });
             DropIndex("dbo.Products", new[] { "SellerId" });
             DropTable("dbo.CategoryProducts");
             DropTable("dbo.ProductCarts");

@@ -141,18 +141,32 @@ namespace Online_Store.Core.ProductServices
 
         public string RemoveProductWithName(string productName)
         {
+            if (!this.context.Products.Any(x=>x.ProductName == productName))
+            {
+                return "Product does not exist.";
+            }
+
+            Product product = this.modelFactory.CreateProduct();
+
+            try
+            {
+                product.Id = this.context.Products.Single(x=>x.ProductName == productName).Id;
+            }
+            catch
+            {
+                return "There were more than one products with that name. No product was removed.";
+            }
             
             try
             {
-                Product product = this.context.Products.Single(x => x.ProductName.ToLower() == productName.ToLower());
+                this.context.Products.Attach(product);
                 this.context.Products.Remove(product);
                 this.context.SaveChanges();
                 return "Product successfuly removed.";
             }
             catch
             {
-                //several cases to handle
-                return "TOFIX: Product doesn`t exist or several other reasons.";
+                return "TOFIX: Product was not removed for some reason.";
             }
         }
     }
