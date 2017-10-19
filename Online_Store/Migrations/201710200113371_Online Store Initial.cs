@@ -3,7 +3,7 @@ namespace Online_Store.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class finalfinalfinal : DbMigration
+    public partial class OnlineStoreInitial : DbMigration
     {
         public override void Up()
         {
@@ -91,7 +91,7 @@ namespace Online_Store.Migrations
                         PriceReduction = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ProductId)
-                .ForeignKey("dbo.Products", t => t.ProductId)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
                 .Index(t => t.ProductId);
             
             CreateTable(

@@ -31,8 +31,8 @@ namespace Online_Store.Commands.CartCommands
 
         public override string Execute()
         {
-            //Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
-            //               .Cart.Products.Count);
+            Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
+                           .Cart.Products.Count);
 
             var allProductsInCart = this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
                                                    .Cart.Products;
@@ -42,12 +42,18 @@ namespace Online_Store.Commands.CartCommands
             }
             this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
                                                    .Cart.Products = new HashSet<Product>();
+            //foreach (var pr in allProductsInCart)
+            //{
+            //    this.context.Products
+            //        .Single(p => p.Id == pr.Id).Carts
+            //        .Single(c => c.UserId == this.loggedUserProvider.CurrentUserId).Products.Remove(pr);
+            //}
 
             var allProductNames = allProductsInCart.Select(p => p.ProductName);
             this.context.SaveChanges();
 
-            //Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
-            //               .Cart.Products.Count);
+            Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
+                           .Cart.Products.Count);
 
             return $"Thank you for purchasing: \n---{string.Join("\n---", allProductNames)}";
         }

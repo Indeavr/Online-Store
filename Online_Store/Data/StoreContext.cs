@@ -41,6 +41,14 @@ namespace Online_Store.Data
                 .WithOptional(x => x.Product)
                 .WillCascadeOnDelete(true);
 
+            modelBuilder.Entity<Sale>()
+                .HasKey(x => x.ProductId);
+
+            modelBuilder.Entity<Product>()
+                .HasOptional(x => x.Sale)
+                .WithRequired(x => x.Product)
+                .WillCascadeOnDelete(true);
+
             base.OnModelCreating(modelBuilder);
         }
     }
