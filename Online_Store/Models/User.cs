@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Online_Store.Models
 {
@@ -18,6 +19,7 @@ namespace Online_Store.Models
 
         [Required]
         [StringLength(12, MinimumLength = 2, ErrorMessage = "Username must be between 2 and 12 symbols long")]
+        [Index(IsUnique = true)]
         public string Username { get; set; }
 
         [Required]

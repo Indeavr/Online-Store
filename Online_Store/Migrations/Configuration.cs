@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Online_Store.Models;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
@@ -29,70 +30,44 @@ namespace Online_Store.Migrations
             //    );
             //
 
-            using (StreamReader bananiReader = new StreamReader(@"../../../jsonproducts/banani.json"))
+            using (StreamReader usersStream = new StreamReader(@"../../../json/Users.json"))
             {
-                if (!context.Products.Any(x=>x.ProductName=="banani"))
+                IList<User> users = JsonConvert.DeserializeObject<IList<User>>(usersStream.ReadToEnd());
+                if (context.Users.Count() == 0)
                 {
-                    var bananiProduct = JsonConvert.DeserializeObject<Product>(bananiReader.ReadToEnd());
-                    context.Products.Add(bananiProduct);
+                    for (int i = 0; i <= users.Count - 1; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            User user = users[i];
+                            user.Seller = new Seller();
+                            context.Users.Add(user);
+                        }
+                        else
+                        {
+                            context.Users.Add(users[i]);
+                        }
+                    }
                     context.SaveChanges();
                 }
             }
 
-            using (StreamReader qbulkiReader = new StreamReader(@"../../../jsonproducts/qbulki.json"))
+            using (StreamReader productsStream = new StreamReader(@"../../../json/Products.json"))
             {
-                if (!context.Products.Any(x => x.ProductName == "qbulki"))
+                if (context.Products.Count() == 0)
                 {
-                    var qbulkiProduct = JsonConvert.DeserializeObject<Product>(qbulkiReader.ReadToEnd());
-                    context.Products.Add(qbulkiProduct);
-                    context.SaveChanges();
+                    IList<Product> products = JsonConvert.DeserializeObject<IList<Product>>(productsStream.ReadToEnd());
+
+                    IList<Seller> sellerCollection = context.Sellers.Take(3).ToList();
+
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        products[i].Seller = sellerCollection[i];
+                        context.Products.Add(products[i]);
+                    }
                 }
+                context.SaveChanges();
             }
-
-            using (StreamReader semkiReader = new StreamReader(@"../../../jsonproducts/semki.json"))
-            {
-                if (!context.Products.Any(x => x.ProductName == "semki"))
-                {
-                    var semkiProduct = JsonConvert.DeserializeObject<Product>(semkiReader.ReadToEnd());
-                    context.Products.Add(semkiProduct);
-                    context.SaveChanges();
-                }
-            }
-
-            using (StreamReader r = new StreamReader(@"../../../User.json"))
-            {
-                if (!context.Users.Any())
-                {
-                    string json = r.ReadToEnd();
-                    var user = JsonConvert.DeserializeObject<User>(json);
-                    user.Seller = new Seller();
-                    context.Users.Add(user);
-                    context.SaveChanges();
-                }
-            }
-
-            //using (StreamReader reader = new StreamReader(@"../../../UserInfo.json"))
-            //{
-            //    if (!context.Products.Any())
-            //    {
-            //        var json = reader.ReadToEnd();
-            //        var product = JsonConvert.DeserializeObject<Product>(json);
-            //        context.Sellers.Single(s => s.UserId == product.SellerId).Products.Add(product);
-            //        //Console.WriteLine(context.Sellers.Single(s => s.UserId == product.SellerId).Products.First().Price);
-            //        context.Products.Add(product);
-            //        context.SaveChanges();
-            //    }
-            //}
-
-            //using (StreamReader r = new StreamReader(@"../../../Product.xml"))
-            //{
-            //    XmlSerializer xmlS = new XmlSerializer(typeof(Product));
-            //    XmlTextReader xmlReader = new XmlTextReader(r);
-            //    Product product = (Product)xmlS.Deserialize(xmlReader);
-
-            //    context.Products.Add(product);
-            //    context.SaveChanges();
-            //}
         }
     }
 }

@@ -16,11 +16,11 @@ namespace Online_Store.Models
         }
 
         [Required]
-        public decimal? Cost { get; set; }
+        public decimal Cost { get; set; }
 
-        public int? DeliveryTime { get; set; } //nullable int
+        public int? DeliveryTime { get; set; }
 
-        [Key, ForeignKey("Product")] //validacii na database nivo, sys update database
+        [Key, ForeignKey("Product")]
         public int ProductId { get; set; }
 
         public virtual Product Product { get; set; }

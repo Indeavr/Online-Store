@@ -1,0 +1,1 @@
++		InnerException	{"Cannot insert duplicate key row in object 'dbo.Categories' with unique index 'IX_CategoryName'. The duplicate key value is (piene).\r\nThe statement has been terminated."}	System.Exception {System.Data.SqlClient.SqlException}

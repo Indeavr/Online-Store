@@ -3,7 +3,6 @@ using System.Xml.Serialization;
 
 namespace Online_Store.Models
 {
-    [XmlRoot("Cart")]
     public class Cart
     {
         private ICollection<Product> products;
@@ -14,8 +13,7 @@ namespace Online_Store.Models
         }
 
         public int Id { get; set; }
-
-        [XmlArray("Products")]
+        
         public virtual ICollection<Product> Products
         {
             get

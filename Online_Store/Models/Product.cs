@@ -22,6 +22,8 @@ namespace Online_Store.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(450)]
+        [Index(IsUnique = true)]
         public string ProductName { get; set; }
 
         [Required]
@@ -44,8 +46,8 @@ namespace Online_Store.Models
         [Required]
         public bool Instock { get; set; }
 
-        [ForeignKey("Sale")]
-        public int? SaleId { get; set; }
+        //[ForeignKey("Sale")]
+        //public int? SaleId { get; set; }
 
         public virtual Sale Sale { get; set; }
 

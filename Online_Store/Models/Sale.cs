@@ -13,8 +13,7 @@ namespace Online_Store.Models
         {
             this.PriceReduction = priceReduction;
         }
-
-        [Required]
+        
         [Key, ForeignKey("Product")]
         public int ProductId { get; set; }
 
