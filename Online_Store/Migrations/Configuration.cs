@@ -29,7 +29,35 @@ namespace Online_Store.Migrations
             //    );
             //
 
+            using (StreamReader bananiReader = new StreamReader(@"../../../jsonproducts/banani.json"))
+            {
+                if (!context.Products.Any(x=>x.ProductName=="banani"))
+                {
+                    var bananiProduct = JsonConvert.DeserializeObject<Product>(bananiReader.ReadToEnd());
+                    context.Products.Add(bananiProduct);
+                    context.SaveChanges();
+                }
+            }
 
+            using (StreamReader qbulkiReader = new StreamReader(@"../../../jsonproducts/qbulki.json"))
+            {
+                if (!context.Products.Any(x => x.ProductName == "qbulki"))
+                {
+                    var qbulkiProduct = JsonConvert.DeserializeObject<Product>(qbulkiReader.ReadToEnd());
+                    context.Products.Add(qbulkiProduct);
+                    context.SaveChanges();
+                }
+            }
+
+            using (StreamReader semkiReader = new StreamReader(@"../../../jsonproducts/semki.json"))
+            {
+                if (!context.Products.Any(x => x.ProductName == "semki"))
+                {
+                    var semkiProduct = JsonConvert.DeserializeObject<Product>(semkiReader.ReadToEnd());
+                    context.Products.Add(semkiProduct);
+                    context.SaveChanges();
+                }
+            }
 
             using (StreamReader r = new StreamReader(@"../../../User.json"))
             {
