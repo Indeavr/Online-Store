@@ -1,6 +1,10 @@
-﻿using Online_Store.Core.Providers;
+﻿using Bytes2you.Validation;
+using Online_Store.Core.Factories;
+using Online_Store.Core.Providers;
+using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using Online_Store.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,30 +12,44 @@ namespace Online_Store.Commands.CartCommands
 {
     public class CheckoutCardCommand : Command, ICommand
     {
-        public CheckoutCardCommand(IStoreContext context, IWriter writer, IReader reader) : base(context, writer, reader)
+        private readonly IModelFactory factory;
+        private readonly ILoggedUserProvider loggedUserProvider;
+        private readonly IUserService userService;
+
+        public CheckoutCardCommand(ILoggedUserProvider loggedUserProvider, IUserService userService,
+                    IModelFactory factory, IStoreContext context, IWriter writer, IReader reader)
+            : base(context, writer, reader)
         {
+            Guard.WhenArgument(loggedUserProvider, "loggedUserProvider").IsNull().Throw();
+            Guard.WhenArgument(factory, "factory").IsNull().Throw();
+            Guard.WhenArgument(userService, "userService").IsNull().Throw();
+
+            this.factory = factory;
+            this.loggedUserProvider = loggedUserProvider;
+            this.userService = userService;
         }
 
         public override string Execute()
         {
-            IList<string> parameters = TakeInput();
+            //Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
+            //               .Cart.Products.Count);
 
-            int cartId = int.Parse(parameters[0]);
-            string productName = parameters[1];
+            var allProductsInCart = this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
+                                                   .Cart.Products;
+            if (allProductsInCart.Count == 0)
+            {
+                return "You don't have products in your cart!";
+            }
+            this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
+                                                   .Cart.Products = new HashSet<Product>();
 
-            Cart cart = base.context.Carts.Single(c => c.UserId == cartId);
-            Product product = base.context.Products.Single(p => p.ProductName == productName);
-            cart.Products.Remove(product);
+            var allProductNames = allProductsInCart.Select(p => p.ProductName);
+            this.context.SaveChanges();
 
-            return $"Thank you for purchasing this product";
-        }
+            //Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
+            //               .Cart.Products.Count);
 
-        private IList<string> TakeInput()
-        {
-            var cart = base.ReadOneLine("Cart ID: ");
-            var product = base.ReadOneLine("Product: ");
-
-            return new List<string>() { cart, product };
+            return $"Thank you for purchasing: \n---{string.Join("\n---", allProductNames)}";
         }
     }
 }
