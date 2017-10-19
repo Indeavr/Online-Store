@@ -79,18 +79,16 @@ namespace Online_Store.Migrations
                 }
             }
 
-           
-
-            using (StreamReader reader = new StreamReader(@"../../../Feedback.json"))
-            {
-                if (!context.Feedbacks.Any())
-                {
-                    string json = reader.ReadToEnd();
-                    var feedback = JsonConvert.DeserializeObject<Feedback>(json);
-                    context.Feedbacks.Add(feedback);
-                    context.SaveChanges();
-                }
-            }
+            //using (StreamReader reader = new StreamReader(@"../../../Feedback.json"))
+            //{
+            //    if (!context.Feedbacks.Any())
+            //    {
+            //        string json = reader.ReadToEnd();
+            //        var feedback = JsonConvert.DeserializeObject<Feedback>(json);
+            //        context.Feedbacks.Add(feedback);
+            //        context.SaveChanges();
+            //    }
+            //}
 
             //using (StreamReader cartReader = new StreamReader(@"../../../Cart.json"))
             //{
