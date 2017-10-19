@@ -3,7 +3,7 @@ namespace Online_Store.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class teste : DbMigration
     {
         public override void Up()
         {
@@ -11,9 +11,11 @@ namespace Online_Store.Migrations
                 "dbo.Carts",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Products",
@@ -78,9 +80,7 @@ namespace Online_Store.Migrations
                         Password = c.String(nullable: false),
                         CartId = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Carts", t => t.CartId)
-                .Index(t => t.CartId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Sales",
@@ -110,13 +110,13 @@ namespace Online_Store.Migrations
                 c => new
                     {
                         Product_Id = c.Int(nullable: false),
-                        Cart_Id = c.Int(nullable: false),
+                        Cart_UserId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Product_Id, t.Cart_Id })
+                .PrimaryKey(t => new { t.Product_Id, t.Cart_UserId })
                 .ForeignKey("dbo.Products", t => t.Product_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Carts", t => t.Cart_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Carts", t => t.Cart_UserId, cascadeDelete: true)
                 .Index(t => t.Product_Id)
-                .Index(t => t.Cart_Id);
+                .Index(t => t.Cart_UserId);
             
             CreateTable(
                 "dbo.CategoryProducts",
@@ -135,28 +135,28 @@ namespace Online_Store.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Carts", "UserId", "dbo.Users");
             DropForeignKey("dbo.ShippingDetails", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Products", "SellerId", "dbo.Sellers");
             DropForeignKey("dbo.Sales", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Feedbacks", "SellerId", "dbo.Sellers");
             DropForeignKey("dbo.Sellers", "UserId", "dbo.Users");
-            DropForeignKey("dbo.Users", "CartId", "dbo.Carts");
             DropForeignKey("dbo.Feedbacks", "ProductId", "dbo.Products");
             DropForeignKey("dbo.CategoryProducts", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.CategoryProducts", "Category_Id", "dbo.Categories");
-            DropForeignKey("dbo.ProductCarts", "Cart_Id", "dbo.Carts");
+            DropForeignKey("dbo.ProductCarts", "Cart_UserId", "dbo.Carts");
             DropForeignKey("dbo.ProductCarts", "Product_Id", "dbo.Products");
             DropIndex("dbo.CategoryProducts", new[] { "Product_Id" });
             DropIndex("dbo.CategoryProducts", new[] { "Category_Id" });
-            DropIndex("dbo.ProductCarts", new[] { "Cart_Id" });
+            DropIndex("dbo.ProductCarts", new[] { "Cart_UserId" });
             DropIndex("dbo.ProductCarts", new[] { "Product_Id" });
             DropIndex("dbo.ShippingDetails", new[] { "ProductId" });
             DropIndex("dbo.Sales", new[] { "ProductId" });
-            DropIndex("dbo.Users", new[] { "CartId" });
             DropIndex("dbo.Sellers", new[] { "UserId" });
             DropIndex("dbo.Feedbacks", new[] { "SellerId" });
             DropIndex("dbo.Feedbacks", new[] { "ProductId" });
             DropIndex("dbo.Products", new[] { "SellerId" });
+            DropIndex("dbo.Carts", new[] { "UserId" });
             DropTable("dbo.CategoryProducts");
             DropTable("dbo.ProductCarts");
             DropTable("dbo.ShippingDetails");

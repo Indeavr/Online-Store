@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace Online_Store.Models
 {
-    [XmlRoot("Cart")]
     public class Cart
     {
         private ICollection<Product> products;
@@ -13,9 +14,11 @@ namespace Online_Store.Models
             this.products = new HashSet<Product>();
         }
 
-        public int Id { get; set; }
+        //[Key, ForeignKey("User")]
+        public int UserId { get; set; }
 
-        [XmlArray("Products")]
+        public virtual User User { get; set; }
+
         public virtual ICollection<Product> Products
         {
             get
