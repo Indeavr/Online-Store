@@ -31,7 +31,7 @@ namespace Online_Store.Migrations
 
             using (StreamReader bananiReader = new StreamReader(@"../../../jsonproducts/banani.json"))
             {
-                if (!context.Products.Any(x=>x.ProductName=="banani"))
+                if (!context.Products.Any(x => x.ProductName == "banani"))
                 {
                     var bananiProduct = JsonConvert.DeserializeObject<Product>(bananiReader.ReadToEnd());
                     context.Products.Add(bananiProduct);
@@ -67,6 +67,28 @@ namespace Online_Store.Migrations
                     var user = JsonConvert.DeserializeObject<User>(json);
                     user.Seller = new Seller();
                     context.Users.Add(user);
+                    context.SaveChanges();
+                }
+            }
+
+            using (StreamReader reader = new StreamReader(@"../../../Feedback.json"))
+            {
+                if (!context.Feedbacks.Any())
+                {
+                    string json = reader.ReadToEnd();
+                    var feedback = JsonConvert.DeserializeObject<Feedback>(json);
+                    context.Feedbacks.Add(feedback);
+                    context.SaveChanges();
+                }
+            }
+
+            using (StreamReader cartReader = new StreamReader(@"../../../Cart.json"))
+            {
+                if (!context.Carts.Any(x => x.Id == 2))
+                {
+                    string json = cartReader.ReadToEnd();
+                    var cart = JsonConvert.DeserializeObject<Cart>(json);
+                    context.Carts.Add(cart);
                     context.SaveChanges();
                 }
             }
