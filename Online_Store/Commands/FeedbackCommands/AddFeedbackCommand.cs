@@ -33,7 +33,7 @@ namespace Online_Store.Commands.FeedbackCommands
             {
                 base.context.Sellers.Single(x => x.UserId == Id).Feedbacks.Add(feedback);
             }
-            else
+            else if (toBeRated == "product")
             {
                 base.context.Products.Single(x => x.Id == Id).Feedbacks.Add(feedback);
             }
