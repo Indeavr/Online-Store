@@ -35,7 +35,6 @@ namespace Online_Store_Tests.Commands.ProductCommands.ListProductsByCategoryComm
             // Assert
             Assert.AreEqual(expectedResult, actualResul);
         }
-
     
     }
 }

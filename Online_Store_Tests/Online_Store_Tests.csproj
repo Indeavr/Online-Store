@@ -62,6 +62,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ProductCommands\AddProductCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListAllProductsCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListFeedbacksForProductsCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsByCategoryCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsOnSaleCommandTests\Constructor_Should.cs" />
     <Compile Include="Commands\ProductCommands\ListProductsOnSaleCommandTests\Execute_Should.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommandTests\Execute_Should.cs" />
     <Compile Include="Commands\ProductCommands\ListAllProductsCommandTests\Execute_Should.cs" />
