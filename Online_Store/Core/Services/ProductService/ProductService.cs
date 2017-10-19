@@ -185,7 +185,7 @@ namespace Online_Store.Core.ProductServices
             }
         }
 
-        public string RemoveProductWithName(string productId)
+        public string RemoveProductWithId(string productId)
         {
             int id;
             try
@@ -203,16 +203,7 @@ namespace Online_Store.Core.ProductServices
             }
 
             Product product = this.modelFactory.CreateProduct();
-
-            try
-            {
-                product.Id = id;
-               // product.Id = this.context.Products.Single(x=>x.ProductName == productName).Id;
-            }
-            catch(Exception ex)
-            {
-                return "There were more than one products with that name. No product was removed.";
-            }
+            product.Id = id;
             
             try
             {
