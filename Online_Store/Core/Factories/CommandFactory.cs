@@ -3,11 +3,6 @@ using Ninject;
 using Online_Store.Commands;
 using Online_Store.Core.Providers;
 using Online_Store.Core.Services.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Core.Factories
 {

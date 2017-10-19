@@ -138,17 +138,43 @@ namespace Online_Store.Core.ProductServices
 
         public string ListAllProducts()
         {
-            throw new NotImplementedException();
+            IList<Product> productsToList = this.context.Products.ToList();
+
+            return string.Join("\n", productsToList) ;
         }
 
         public string ListFeedbacksFromProduct(string productName)
         {
-            throw new NotImplementedException();
+            if (!this.context.Products.Any(x=>x.ProductName==productName))
+            {
+                return "Product does not exist.";
+            }
+            try
+            {
+                IList<Feedback> feedbacksToList = this.context.Products.Single(x => x.ProductName == productName).Feedbacks.ToList();
+                return string.Join("\n", feedbacksToList);
+            }
+            catch
+            {
+                return "Somehow more than one products with that name exist.";
+            }
         }
 
         public string ListProductsByCategory(string categoryName)
         {
-            throw new NotImplementedException();
+            if (!this.context.Categories.Any(x => x.CategoryName == categoryName))
+            {
+                return "No such category.";
+            }
+            try
+            {
+                IList<Product> productsToList = this.context.Categories.Single(x => x.CategoryName == categoryName).Products.ToList();
+                return string.Join("\n", productsToList);
+            }
+            catch
+            {
+                return "Somehow more than one categories with that name exist.";
+            }
         }
 
         public string RemoveProductWithName(string productId)

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bytes2you.Validation;
 using Online_Store.Core.Providers;
 using Online_Store.Data;
-using Bytes2you.Validation;
+using System.Linq;
+using System.Text;
 
 namespace Online_Store.Commands.SellerCommands
 {

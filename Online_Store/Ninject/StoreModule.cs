@@ -50,6 +50,9 @@ namespace Online_Store.Ninject
 
             this.Bind<ICommand>().To<AddProductCommand>().Named("addproduct");
             this.Bind<ICommand>().To<RemoveProductCommand>().Named("removeproduct");
+            this.Bind<ICommand>().To<ListAllProductsCommand>().Named("listallproducts");
+            this.Bind<ICommand>().To<ListFeedbacksForProductCommand>().Named("listfeedbacksforproduct");
+            this.Bind<ICommand>().To<ListProductsByCategoryCommand>().Named("listproductsbycategory");
 
             this.Bind<ICommand>().To<EmptyCommand>().Named("emptycommand");
         }

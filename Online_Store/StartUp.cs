@@ -2,8 +2,6 @@
 using Online_Store.Core;
 using Online_Store.Data;
 using Online_Store.Migrations;
-using Online_Store.Models;
-using Online_Store.Models.Enums;
 using Online_Store.Ninject;
 using System.Data.Entity;
 using System.Linq;

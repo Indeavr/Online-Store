@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Online_Store.Core.Providers;
+﻿using Online_Store.Core.Providers;
 using Online_Store.Data;
 using Online_Store.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Online_Store.Commands.FeedbackCommands
 {
@@ -21,7 +18,7 @@ namespace Online_Store.Commands.FeedbackCommands
 
             var rating = parameters[0];
             var comment = parameters[1];
-
+            
             Feedback feedback = base.context.Feedbacks.Single(f => f.Comment == comment);
 
             return $"Feedback added successfully";

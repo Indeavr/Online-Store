@@ -35,5 +35,14 @@ namespace Online_Store.Models
         public int? SellerId { get; set; }
 
         public virtual Seller Seller { get; set; }
+
+        public override string ToString()
+        {
+            string text = string.Format("Feedback for product with Id = {0}:\n{1}", this.ProductId, this.Comment);
+
+            string decoratedText = string.Format("/ / / / / / / / / / / / / / / / /\n{0}\n",text);
+
+            return decoratedText;
+        }
     }
 }

@@ -4,10 +4,7 @@ using Online_Store.Core.Providers;
 using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Commands.ProductCommands
 {
@@ -38,7 +35,7 @@ namespace Online_Store.Commands.ProductCommands
 
             string categoryToList = TakeInput();
 
-            return this.productService.ListFeedbacksFromProduct(categoryToList);
+            return this.productService.ListProductsByCategory(categoryToList);
         }
 
         private string TakeInput()

@@ -38,10 +38,7 @@ namespace Online_Store.Models
         public int SellerId { get; set; }
 
         public virtual Seller Seller { get; set; }
-
-        //[ForeignKey("ShippingDetails")]
-        //public int ShippingDetailsId { get; set; }
-
+        
         public virtual ShippingDetails ShippingDetails { get; set; }
 
         [Required]
@@ -94,8 +91,10 @@ namespace Online_Store.Models
                 "Product: {0}\nPrice: {1}\nAdded on: {2}\nPayment method: {3}\nIn stock: {4}",
                 this.ProductName, this.Price, this.Date.ToString(),
                 this.PaymentMethod.ToString(), this.Instock.ToString());
-            
-            return productAsString;
+
+            string decoratedString = string.Format("# # # # # # # # # # # # # # #\n{0}\n", productAsString);
+
+            return decoratedString;
         }
     }
 }
