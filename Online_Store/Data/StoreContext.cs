@@ -33,15 +33,23 @@ namespace Online_Store.Data
             //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
-                      .HasRequired(t => t.ShippingDetails)
-                      .WithRequiredPrincipal(t => t.Product)
-                      .WillCascadeOnDelete(true);
+                .HasRequired(t => t.ShippingDetails)
+                .WithRequiredPrincipal(t => t.Product)
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Cart>()
                 .HasKey(c => c.UserId);
 
             modelBuilder.Entity<Cart>()
                 .HasRequired(t => t.User);
+
+            modelBuilder.Entity<Feedback>()
+                .HasOptional(x => x.Product);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(x => x.Feedbacks)
+                .WithOptional(x => x.Product)
+                .WillCascadeOnDelete(true);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -3,7 +3,7 @@ namespace Online_Store.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class OnlineStoreInitial : DbMigration
+    public partial class OnlineStoreInitail : DbMigration
     {
         public override void Up()
         {
@@ -56,8 +56,8 @@ namespace Online_Store.Migrations
                         SellerId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Products", t => t.ProductId)
                 .ForeignKey("dbo.Sellers", t => t.SellerId)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
                 .Index(t => t.ProductId)
                 .Index(t => t.SellerId);
             
@@ -138,9 +138,9 @@ namespace Online_Store.Migrations
             DropForeignKey("dbo.ShippingDetails", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Products", "SellerId", "dbo.Sellers");
             DropForeignKey("dbo.Sales", "ProductId", "dbo.Products");
+            DropForeignKey("dbo.Feedbacks", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Feedbacks", "SellerId", "dbo.Sellers");
             DropForeignKey("dbo.Sellers", "UserId", "dbo.Users");
-            DropForeignKey("dbo.Feedbacks", "ProductId", "dbo.Products");
             DropForeignKey("dbo.CategoryProducts", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.CategoryProducts", "Category_Id", "dbo.Categories");
             DropForeignKey("dbo.ProductCarts", "Cart_UserId", "dbo.Carts");

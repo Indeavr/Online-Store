@@ -47,6 +47,8 @@ namespace Online_Store.Migrations
                 if (!context.Products.Any(x => x.ProductName == "banani"))
                 {
                     var bananiProduct = JsonConvert.DeserializeObject<Product>(bananiReader.ReadToEnd());
+                    context.Sellers.Single(s => s.UserId == bananiProduct.SellerId).Products.Add(bananiProduct);
+
                     context.Products.Add(bananiProduct);
                     context.SaveChanges();
                 }
@@ -57,6 +59,9 @@ namespace Online_Store.Migrations
                 if (!context.Products.Any(x => x.ProductName == "qbulki"))
                 {
                     var qbulkiProduct = JsonConvert.DeserializeObject<Product>(qbulkiReader.ReadToEnd());
+                    context.Sellers.Single(s => s.UserId == qbulkiProduct.SellerId).Products.Add(qbulkiProduct);
+
+
                     context.Products.Add(qbulkiProduct);
                     context.SaveChanges();
                 }
@@ -67,6 +72,8 @@ namespace Online_Store.Migrations
                 if (!context.Products.Any(x => x.ProductName == "semki"))
                 {
                     var semkiProduct = JsonConvert.DeserializeObject<Product>(semkiReader.ReadToEnd());
+                    context.Sellers.Single(s => s.UserId == semkiProduct.SellerId).Products.Add(semkiProduct);
+
                     context.Products.Add(semkiProduct);
                     context.SaveChanges();
                 }
