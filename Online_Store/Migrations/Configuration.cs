@@ -36,6 +36,7 @@ namespace Online_Store.Migrations
                     string json = r.ReadToEnd();
                     var user = JsonConvert.DeserializeObject<User>(json);
                     user.Seller = new Seller();
+                    user.Cart = new Cart();
                     context.Users.Add(user);
                     context.SaveChanges();
                 }

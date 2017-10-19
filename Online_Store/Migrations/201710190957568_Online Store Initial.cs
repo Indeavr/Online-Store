@@ -3,7 +3,7 @@ namespace Online_Store.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class teste : DbMigration
+    public partial class OnlineStoreInitial : DbMigration
     {
         public override void Up()
         {
@@ -78,7 +78,6 @@ namespace Online_Store.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Username = c.String(nullable: false, maxLength: 12),
                         Password = c.String(nullable: false),
-                        CartId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id);
             

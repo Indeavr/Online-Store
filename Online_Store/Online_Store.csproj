@@ -105,9 +105,9 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710190944174_teste.cs" />
-    <Compile Include="Migrations\201710190944174_teste.Designer.cs">
-      <DependentUpon>201710190944174_teste.cs</DependentUpon>
+    <Compile Include="Migrations\201710190957568_Online Store Initial.cs" />
+    <Compile Include="Migrations\201710190957568_Online Store Initial.Designer.cs">
+      <DependentUpon>201710190957568_Online Store Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -128,8 +128,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710190944174_teste.resx">
-      <DependentUpon>201710190944174_teste.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710190957568_Online Store Initial.resx">
+      <DependentUpon>201710190957568_Online Store Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

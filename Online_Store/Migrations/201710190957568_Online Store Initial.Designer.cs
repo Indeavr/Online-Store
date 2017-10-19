@@ -7,13 +7,13 @@ namespace Online_Store.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class teste : IMigrationMetadata
+    public sealed partial class OnlineStoreInitial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(teste));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(OnlineStoreInitial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710190944174_teste"; }
+            get { return "201710190957568_Online Store Initial"; }
         }
         
         string IMigrationMetadata.Source
