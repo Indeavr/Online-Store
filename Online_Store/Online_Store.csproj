@@ -66,12 +66,15 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\EmptyCommand\EmptyCommand.cs" />
     <Compile Include="Commands\FeedbackCommands\AddFeedbackCommand.cs" />
+    <Compile Include="Commands\FeedbackCommands\EditCommentCommand.cs" />
+    <Compile Include="Commands\FeedbackCommands\ListFeedbacksCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\EditProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\ListAllProductsCommand.cs" />
     <Compile Include="Commands\ProductCommands\ListFeedbacksForProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\ListProductsByCategoryCommand.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsOnSaleCommand.cs" />
     <Compile Include="Commands\ProductCommands\RemoveProductCommand.cs" />
     <Compile Include="Commands\SellerCommands\ListAllProductsBySellerCommand.cs" />
     <Compile Include="Commands\SellerCommands\ListSellerFeedbackCommand.cs" />

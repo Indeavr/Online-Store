@@ -47,12 +47,15 @@ namespace Online_Store.Ninject
             this.Bind<ICommand>().To<AddToCartCommand>().Named("addtocart");
             this.Bind<ICommand>().To<CheckoutCardCommand>().Named("checkoutcart");
             this.Bind<ICommand>().To<AddFeedbackCommand>().Named("addfeedback");
+            this.Bind<ICommand>().To<EditCommentCommand>().Named("editcomment");
+            this.Bind<ICommand>().To<ListFeedbacksCommand>().Named("listfeedbacks");
 
             this.Bind<ICommand>().To<AddProductCommand>().Named("addproduct");
             this.Bind<ICommand>().To<RemoveProductCommand>().Named("removeproduct");
             this.Bind<ICommand>().To<ListAllProductsCommand>().Named("listallproducts");
             this.Bind<ICommand>().To<ListFeedbacksForProductCommand>().Named("listfeedbacksforproduct");
             this.Bind<ICommand>().To<ListProductsByCategoryCommand>().Named("listproductsbycategory");
+            this.Bind<ICommand>().To<ListProductsOnSaleCommand>().Named("listproductsonsale");
 
             this.Bind<ICommand>().To<EmptyCommand>().Named("emptycommand");
         }
