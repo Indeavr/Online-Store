@@ -40,7 +40,7 @@ namespace Online_Store.Core.ProductServices
             int shippingDetailsDeliveryTIme = 0;
             decimal priceReduction;
             bool shippingDetailsInUse = true;
-            
+
             try
             {
                 //validation
@@ -78,7 +78,7 @@ namespace Online_Store.Core.ProductServices
                 {
                     shippingDetailsInUse = false;
                 }
-                
+
                 priceReduction = decimal.Parse(parameters[6]);
                 if (price < 0)
                 {
@@ -95,7 +95,7 @@ namespace Online_Store.Core.ProductServices
             product.Price = price;
             product.Date = DateTime.Now;
             product.PaymentMethod = paymentMethod;
-            product.Instock = true; 
+            product.Instock = true;
             product.SellerId = this.loggedUserProvider.CurrentUserId;
 
             if (this.context.Categories.Any(x => x.CategoryName == category))
@@ -117,7 +117,7 @@ namespace Online_Store.Core.ProductServices
                 product.ShippingDetails = newShippingDetails;
             }
 
-            if (priceReduction!=-1)
+            if (priceReduction != -1)
             {
                 Sale newSale = this.modelFactory.CreateSale();
                 newSale.PriceReduction = priceReduction;
@@ -148,12 +148,12 @@ namespace Online_Store.Core.ProductServices
                 return "No products!";
             }
 
-            return string.Join("\n", productsToList) ;
+            return string.Join("\n", productsToList);
         }
 
         public string ListFeedbacksFromProduct(string productName)
         {
-            if (!this.context.Products.Any(x=>x.ProductName==productName))
+            if (!this.context.Products.Any(x => x.ProductName == productName))
             {
                 return "Product does not exist.";
             }
@@ -174,18 +174,14 @@ namespace Online_Store.Core.ProductServices
             {
                 return "No such category.";
             }
-            try
-            {
-                IList<Product> productsToList = this.context.Categories.Single(x => x.CategoryName == categoryName).Products.ToList();
-                return string.Join("\n", productsToList);
-            }
-            catch
-            {
-                return "Somehow more than one categories with that name exist.";
-            }
+
+            IList<Product> productsToList = this.context.Categories
+                            .Single(x => x.CategoryName == categoryName).Products.ToList();
+
+            return String.Join("\n", productsToList);
         }
 
-        public string RemoveProductWithName(string productId)
+        public string RemoveProductWithId(string productId)
         {
             int id;
             try
@@ -197,23 +193,14 @@ namespace Online_Store.Core.ProductServices
                 return "ProductId Must be Int!";
             }
 
-            if (!this.context.Products.Any(x=>x.Id == id))
+            if (!this.context.Products.Any(x => x.Id == id))
             {
                 throw new ArgumentException("Product does not exist.");
             }
 
             Product product = this.modelFactory.CreateProduct();
+            product.Id = id;
 
-            try
-            {
-                product.Id = id;
-               // product.Id = this.context.Products.Single(x=>x.ProductName == productName).Id;
-            }
-            catch(Exception ex)
-            {
-                return "There were more than one products with that name. No product was removed.";
-            }
-            
             try
             {
                 this.context.Products.Attach(product);

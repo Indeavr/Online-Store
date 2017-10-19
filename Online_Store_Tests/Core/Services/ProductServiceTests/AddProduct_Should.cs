@@ -10,8 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store_Tests.Core.Services.ProductServiceTests
 {
@@ -71,6 +69,9 @@ namespace Online_Store_Tests.Core.Services.ProductServiceTests
 
             var productMock = new Mock<Product>();
             productMock.Setup(m => m.Categories).Returns(new HashSet<Category>());
+            productMock.Setup(m => m.Feedbacks).Returns(new HashSet<Feedback>());
+            productMock.Setup(m => m.Carts).Returns(new HashSet<Cart>());
+
             factoryMock.Setup(m => m.CreateProduct()).Returns(productMock.Object);
 
             var categoryMock = new Mock<Category>();
@@ -89,7 +90,6 @@ namespace Online_Store_Tests.Core.Services.ProductServiceTests
                 Categories = new Category[] { new Category("Telephone") },
                 PaymentMethod = PaymentMethodEnum.Cash,
                 Instock = true,
-                SellerId = 1,
                 ShippingDetails = new ShippingDetails(20, 100),
                 Sale = new Sale(35)
             };
@@ -109,9 +109,55 @@ namespace Online_Store_Tests.Core.Services.ProductServiceTests
 
             // Assert
             // Assert.AreEqual(contextMock.Object.Products.Last(), legitProduct);
-            setMockProduct.Verify(m => m.Add(legitProduct), Times.Once);
+            setMockProduct.Verify(m => m.Add(It.IsAny<Product>()), Times.Once);
             contextMock.Verify(m => m.SaveChanges(), Times.Once);
         }
 
+        [TestMethod]
+        public void ReturnErrorMessage_WhenPriceIsNegative()
+        {
+            // Arange
+            var contextMock = new Mock<IStoreContext>();
+            var loggedUserProviderMock = new Mock<ILoggedUserProvider>();
+            var writerMock = new Mock<IWriter>();
+            var factoryMock = new Mock<IModelFactory>();
+
+            loggedUserProviderMock.Setup(m => m.CurrentUserId).Returns(1);
+
+            List<string> parameters = new List<string>()
+            {
+                "Samsung", "-1000", "Telephone", "Cash", "20", "100", "35"
+            };
+
+            IQueryable<Product> products =
+                new List<Product>
+             {
+                    new Product { ProductName = "first" , Price = 200,
+                        PaymentMethod = PaymentMethodEnum.Cash },
+                    new Product { ProductName = "second" , Price = 300,
+                        PaymentMethod = PaymentMethodEnum.Visa},
+                    new Product { ProductName = "third" , Price = 400,
+                        PaymentMethod = PaymentMethodEnum.MasterCard},
+             }.AsQueryable();
+
+            var setMockProduct = new Mock<DbSet<Product>>();
+            setMockProduct.As<IQueryable<Product>>().Setup(m => m.Provider).Returns(products.Provider);
+            setMockProduct.As<IQueryable<Product>>().Setup(m => m.Expression).Returns(products.Expression);
+            setMockProduct.As<IQueryable<Product>>().Setup(m => m.ElementType).Returns(products.ElementType);
+            setMockProduct.As<IQueryable<Product>>().Setup(m => m.GetEnumerator()).Returns(() => products.GetEnumerator());
+
+            contextMock.Setup(m => m.Products).Returns(setMockProduct.Object);
+
+            var productService = new ProductService(contextMock.Object, loggedUserProviderMock.Object,
+                              writerMock.Object, factoryMock.Object);
+
+            string expectedResult = "One or more parameters for the AddProduct command are invalid.";
+
+            // Act 
+            string actualResult = productService.AddProduct(parameters);
+            // Assert
+
+            Assert.AreEqual(actualResult, expectedResult);
+        }
     }
 }

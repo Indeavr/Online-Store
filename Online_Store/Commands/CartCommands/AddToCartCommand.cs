@@ -1,7 +1,10 @@
-﻿using Online_Store.Core.Factories;
+﻿using Bytes2you.Validation;
+using Online_Store.Core.Factories;
 using Online_Store.Core.Providers;
+using Online_Store.Core.Services.User;
 using Online_Store.Data;
 using Online_Store.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,39 +13,55 @@ namespace Online_Store.Commands.CartCommands
     public class AddToCartCommand : Command, ICommand
     {
         private readonly IModelFactory factory;
-        
-        public AddToCartCommand(IModelFactory factory, IStoreContext context, IWriter writer, IReader reader)
+        private readonly ILoggedUserProvider loggedUserProvider;
+        private readonly IUserService userService;
+
+
+        public AddToCartCommand(ILoggedUserProvider loggedUserProvider, IUserService userService,
+                    IModelFactory factory,IStoreContext context, IWriter writer, IReader reader)
             : base(context, writer, reader)
         {
+            Guard.WhenArgument(loggedUserProvider, "loggedUserProvider").IsNull().Throw();
+            Guard.WhenArgument(factory, "factory").IsNull().Throw();
+            Guard.WhenArgument(userService, "userService").IsNull().Throw();
+
             this.factory = factory;
+            this.loggedUserProvider = loggedUserProvider;
+            this.userService = userService;
         }
 
         public override string Execute()
         {
+            if (!this.userService.IsUserLogged())
+            {
+                return "You must Login First!";
+            }
+
             IList<string> parameters = TakeInput();
 
-            int cartId = int.Parse(parameters[0]);
-            string productName = parameters[1];
-
-            //Cart cart = this.factory.CreateCart();
-            //Product product = this.factory.CreateProduct();
-            //product.ProductName = productName;
-
-            //this.context.Carts.Add(cart);
-
-            Cart cart = base.context.Carts.Single(c => c.UserId == cartId);
-            Product product = base.context.Products.Single(p => p.ProductName == productName);
-            cart.Products.Add(product);
-
-            return $"Product successfully added to cart";
+            return this.userService.AddToCart(parameters);
         }
 
         private IList<string> TakeInput()
         {
-            var cart = base.ReadOneLine("Cart ID: ");
-            var product = base.ReadOneLine("Product: ");
+            var type = base.ReadOneLine("Choose by what to add Product: [id, name]: ");
+            string id = null;
+            string name = null;
 
-            return new List<string>() { cart, product };
+            if (type.ToLower() == "id")
+            {
+                id = base.ReadOneLine("ProductId: ");
+            }
+            else if (type.ToLower() == "name")
+            {
+                name = base.ReadOneLine("Product Name: ");
+            }
+            else
+            {
+                this.writer.WriteLine("You didn't Enter 'id' or 'name'!");
+            }
+
+            return new List<string>() { id, name };
         }
     }
 }

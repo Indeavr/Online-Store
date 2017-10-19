@@ -35,7 +35,7 @@ namespace Online_Store.Commands.ProductCommands
             IList<string> parameters = TakeInput();
             string productId = parameters[0];
             
-            return this.productService.RemoveProductWithName(productId);
+            return this.productService.RemoveProductWithId(productId);
         }
 
         private IList<string> TakeInput()

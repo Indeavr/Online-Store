@@ -62,10 +62,23 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CartCommands\AddToCartCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\ProductCommands\AddProductCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListAllProductsCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListFeedbacksForProductsCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsByCategoryCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsOnSaleCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsOnSaleCommandTests\Execute_Should.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommandTests\Execute_Should.cs" />
     <Compile Include="Commands\ProductCommands\ListAllProductsCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListFeedbacksForProductsCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\ProductCommands\ListProductsByCategoryCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveProductCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\ProductCommands\RemoveProductCommandTests\Execute_Should.cs" />
     <Compile Include="Core\Services\ProductServiceTests\AddProduct_Should.cs" />
     <Compile Include="Core\Services\ProductServiceTests\ListAllProducts_Should.cs" />
+    <Compile Include="Core\Services\ProductServiceTests\ListProductsByCategory_Should.cs" />
+    <Compile Include="Core\Services\ProductServiceTests\RemoveProductWithId_Should.cs" />
     <Compile Include="Core\Services\User\UserServiceTests\CheckPassword_Should.cs" />
     <Compile Include="Core\Services\User\UserServiceTests\CheckUsername_Should.cs" />
     <Compile Include="Core\Services\User\UserServiceTests\GeneratePasswordHash_Should.cs" />
