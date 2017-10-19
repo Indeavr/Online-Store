@@ -21,11 +21,11 @@ namespace Online_Store.Commands.FeedbackCommands
 
             var product = parameters[0];
             var feedbackId = int.Parse(parameters[1]);
+            var newComment = parameters[2];
 
             Feedback feedback = base.context.Feedbacks.Single(f => f.Id == feedbackId);
 
-            writer.Write("Edit comment: ");
-            feedback.Comment = reader.ReadLine();
+            feedback.Comment = newComment;
 
             return $"Comment edited succesfully";
         }
@@ -34,8 +34,9 @@ namespace Online_Store.Commands.FeedbackCommands
         {
             var product = base.ReadOneLine("Product: ");
             var feedback = base.ReadOneLine("Feedback ID: ");
+            var newComment = base.ReadOneLine("Edit comment: ");
 
-            return new List<string>() { product, feedback };
+            return new List<string>() { product, feedback, newComment };
            
         }
     }
