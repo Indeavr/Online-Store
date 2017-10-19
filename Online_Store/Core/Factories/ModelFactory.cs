@@ -1,4 +1,5 @@
-﻿using Online_Store.Models;
+﻿using System;
+using Online_Store.Models;
 
 namespace Online_Store.Core.Factories
 {
@@ -36,6 +37,11 @@ namespace Online_Store.Core.Factories
         public Sale CreateSale()
         {
             return new Sale();
+        }
+
+        public Feedback CreateFeedback()
+        {
+            return new Feedback();
         }
     }
 }

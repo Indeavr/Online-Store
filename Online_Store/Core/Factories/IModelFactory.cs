@@ -17,5 +17,7 @@ namespace Online_Store.Core.Factories
         ShippingDetails CreateShippingDetails();
 
         Sale CreateSale();
+
+        Feedback CreateFeedback();
     }
 }
