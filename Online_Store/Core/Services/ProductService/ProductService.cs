@@ -90,12 +90,12 @@ namespace Online_Store.Core.ProductServices
                 return "One or more parameters for the AddProduct command are invalid.";
             }
 
-            Product product = new Product();
+            Product product = this.modelFactory.CreateProduct();
             product.ProductName = productName;
             product.Price = price;
             product.Date = DateTime.Now;
             product.PaymentMethod = paymentMethod;
-            product.Instock = true;
+            product.Instock = true; 
             product.SellerId = this.loggedUserProvider.CurrentUserId;
 
             if (this.context.Categories.Any(x => x.CategoryName == category))
@@ -123,7 +123,10 @@ namespace Online_Store.Core.ProductServices
                 newSale.PriceReduction = priceReduction;
                 product.Sale = newSale;
             }
-            
+
+            //this.context.Sellers.Single(s => s.UserId == this.loggedUserProvider.CurrentUserId)
+            //  .Products.Add(product);
+
             context.Products.Add(product);
             context.SaveChanges();
 
@@ -139,6 +142,11 @@ namespace Online_Store.Core.ProductServices
         public string ListAllProducts()
         {
             IList<Product> productsToList = this.context.Products.ToList();
+
+            if (!productsToList.Any())
+            {
+                return "No products!";
+            }
 
             return string.Join("\n", productsToList) ;
         }

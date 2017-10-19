@@ -41,6 +41,7 @@ namespace Online_Store.Commands.UserCommands
 
             string hashedPassword = userService.GeneratePasswordHash(password);
             User user = factory.CreateUser(username, hashedPassword);
+            user.Cart = this.factory.CreateCart();
 
             this.context.Users.Add(user);
             this.context.SaveChanges();

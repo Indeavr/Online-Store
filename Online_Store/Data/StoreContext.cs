@@ -22,21 +22,25 @@ namespace Online_Store.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Feedback>()
-            //    .HasOptional(c => c.Seller)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Product>()
+                .HasRequired(t => t.ShippingDetails)
+                .WithRequiredPrincipal(t => t.Product)
+                .WillCascadeOnDelete(true);
 
-            //modelBuilder.Entity<Product>()
-            //    .HasRequired(s => s.Seller)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Cart>()
+                .HasKey(c => c.UserId);
+
+            modelBuilder.Entity<Cart>()
+                .HasRequired(t => t.User);
+
+            modelBuilder.Entity<Feedback>()
+                .HasOptional(x => x.Product);
 
             modelBuilder.Entity<Product>()
-                      .HasRequired(t => t.ShippingDetails)
-                      .WithRequiredPrincipal(t => t.Product)
-                      .WillCascadeOnDelete(true);
-            
+                .HasMany(x => x.Feedbacks)
+                .WithOptional(x => x.Product)
+                .WillCascadeOnDelete(true);
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -25,7 +25,8 @@ namespace Online_Store.Models
         [Required]
         public string Password { get; set; }
 
-        public int? CartId { get; set; }
+       //// [ForeignKey("Cart")]
+       // public int? CartId { get; set; }
 
         public virtual Cart Cart { get; set; }
 

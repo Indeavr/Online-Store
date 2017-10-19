@@ -105,10 +105,13 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710192149112_finalfinalfinal.cs" />
-    <Compile Include="Migrations\201710192149112_finalfinalfinal.Designer.cs">
-      <DependentUpon>201710192149112_finalfinalfinal.cs</DependentUpon>
+<<<<<<< HEAD
+=======
+    <Compile Include="Migrations\201710191024492_Online Store Initail.cs" />
+    <Compile Include="Migrations\201710191024492_Online Store Initail.Designer.cs">
+      <DependentUpon>201710191024492_Online Store Initail.cs</DependentUpon>
     </Compile>
+>>>>>>> origin/master
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
@@ -127,10 +130,13 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+<<<<<<< HEAD
+=======
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710192149112_finalfinalfinal.resx">
-      <DependentUpon>201710192149112_finalfinalfinal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710191024492_Online Store Initail.resx">
+      <DependentUpon>201710191024492_Online Store Initail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+>>>>>>> origin/master
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

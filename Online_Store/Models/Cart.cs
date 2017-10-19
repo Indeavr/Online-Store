@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace Online_Store.Models
 {
@@ -12,8 +11,16 @@ namespace Online_Store.Models
             this.products = new HashSet<Product>();
         }
 
-        public int Id { get; set; }
+//<<<<<<< HEAD
+       // public int Id { get; set; }
         
+//=======
+        //[Key, ForeignKey("User")]
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; }
+
+//>>>>>>> origin/master
         public virtual ICollection<Product> Products
         {
             get

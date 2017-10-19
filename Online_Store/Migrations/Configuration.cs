@@ -30,6 +30,7 @@ namespace Online_Store.Migrations
             //    );
             //
 
+            //<<<<<<< HEAD
             using (StreamReader usersStream = new StreamReader(@"../../../json/Users.json"))
             {
                 IList<User> users = JsonConvert.DeserializeObject<IList<User>>(usersStream.ReadToEnd());
@@ -52,6 +53,31 @@ namespace Online_Store.Migrations
                 }
             }
 
+            using (StreamReader r = new StreamReader(@"../../../json/User.json"))
+            {
+                if (!context.Users.Any())
+                {
+                    string json = r.ReadToEnd();
+                    var user = JsonConvert.DeserializeObject<User>(json);
+                    user.Seller = new Seller();
+                    user.Cart = new Cart();
+                    context.Users.Add(user);
+                    context.SaveChanges();
+                }
+            }
+            //using (StreamReader cartReader = new StreamReader(@"../../../json/Cart.json"))
+            //{
+            //    if (!context.Carts.Any(x => x.UserId == 2)) //throws exeption when there is no user with ID=2 => should be if (context.Carts.ToList().Count != 0)
+            //    {
+            //        string json = cartReader.ReadToEnd();
+            //        var cart = JsonConvert.DeserializeObject<Cart>(json);
+            //        context.Carts.Add(cart);
+            //        context.SaveChanges(); //exception when there is no user with ID=1
+            //    }
+            //}
+            context.Carts.Add(new Cart() { UserId = context.Users.First().Id }); //only exceptionless way for now to add a cart
+            context.SaveChanges();
+
             using (StreamReader productsStream = new StreamReader(@"../../../json/Products.json"))
             {
                 if (context.Products.Count() == 0)
@@ -68,6 +94,29 @@ namespace Online_Store.Migrations
                 }
                 context.SaveChanges();
             }
+
+            using (StreamReader reader = new StreamReader(@"../../../json/Feedback.json"))
+            {
+                if (!context.Feedbacks.Any())
+                {
+                    string json = reader.ReadToEnd();
+                    var feedback = JsonConvert.DeserializeObject<Feedback>(json);
+                    context.Feedbacks.Add(feedback);
+                    context.SaveChanges();
+                }
+            }
+            
+            using (StreamReader reader = new StreamReader(@"../../../json/ShippingDetails.json"))
+            {
+                if (!context.ShippingDetails.Any())
+                {
+                    string json = reader.ReadToEnd();
+                    var shippingDetails = JsonConvert.DeserializeObject<ShippingDetails>(json);
+                    context.ShippingDetails.Add(shippingDetails);
+                    context.SaveChanges();
+                }
+            }
+
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Online_Store.Commands.CartCommands
             int cartId = int.Parse(parameters[0]);
             string productName = parameters[1];
 
-            Cart cart = base.context.Carts.Single(c => c.Id == cartId);
+            Cart cart = base.context.Carts.Single(c => c.UserId == cartId);
             Product product = base.context.Products.Single(p => p.ProductName == productName);
             cart.Products.Remove(product);
 
