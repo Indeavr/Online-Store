@@ -93,6 +93,18 @@ namespace Online_Store.Migrations
                 }
             }
 
+            using (StreamReader reader = new StreamReader(@"../../../ShippingDetails.json"))
+            {
+                if (!context.ShippingDetails.Any())
+                {
+                    string json = reader.ReadToEnd();
+                    var shippingDetails = JsonConvert.DeserializeObject<ShippingDetails>(json);
+                    context.ShippingDetails.Add(shippingDetails);
+                    context.SaveChanges();
+                }
+            }
+
+
             //using (StreamReader reader = new StreamReader(@"../../../UserInfo.json"))
             //{
             //    if (!context.Products.Any())
