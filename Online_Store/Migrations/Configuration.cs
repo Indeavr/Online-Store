@@ -75,9 +75,13 @@ namespace Online_Store.Migrations
             //        context.SaveChanges(); //exception when there is no user with ID=1
             //    }
             //}
-            context.Carts.Add(new Cart() { UserId = context.Users.First().Id }); //only exceptionless way for now to add a cart
-            context.SaveChanges();
 
+            if (context.Carts.ToList().Count==0)
+            {
+                context.Carts.Add(new Cart() { UserId = context.Users.First().Id }); //only exceptionless way for now to add a cart
+                context.SaveChanges();
+            }
+            
             using (StreamReader productsStream = new StreamReader(@"../../../json/Products.json"))
             {
                 if (context.Products.Count() == 0)
