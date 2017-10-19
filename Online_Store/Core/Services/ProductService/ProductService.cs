@@ -36,10 +36,11 @@ namespace Online_Store.Core.ProductServices
             decimal price;
             string category;
             PaymentMethodEnum paymentMethod;
-            decimal shippingDetailsCost;
-            int shippingDetailsDeliveryTIme;
+            decimal shippingDetailsCost = 0;
+            int shippingDetailsDeliveryTIme = 0;
             decimal priceReduction;
-
+            bool shippingDetailsInUse = true;
+            
             try
             {
                 //validation
@@ -59,16 +60,25 @@ namespace Online_Store.Core.ProductServices
                 {
                     throw new ArgumentOutOfRangeException("Invalid payment method.");
                 }
-                shippingDetailsCost = decimal.Parse(parameters[4]);
-                if (price < 0)
+
+                if (parameters[4] != "-1" && parameters[5] != "-1")
                 {
-                    throw new ArgumentException("Shipping cost cannot be negative.");
+                    shippingDetailsCost = decimal.Parse(parameters[4]);
+                    if (price < 0)
+                    {
+                        throw new ArgumentException("Shipping cost cannot be negative.");
+                    }
+                    shippingDetailsDeliveryTIme = int.Parse(parameters[5]);
+                    if (price < 0)
+                    {
+                        throw new ArgumentException("Delivery time cannot be negative.");
+                    }
                 }
-                shippingDetailsDeliveryTIme = int.Parse(parameters[5]);
-                if (price < 0)
+                else
                 {
-                    throw new ArgumentException("Delivery time cannot be negative.");
+                    shippingDetailsInUse = false;
                 }
+                
                 priceReduction = decimal.Parse(parameters[6]);
                 if (price < 0)
                 {
@@ -99,19 +109,21 @@ namespace Online_Store.Core.ProductServices
                 product.Categories.Add(newCategory);
             }
 
-            ShippingDetails newShippingDetails = modelFactory.CreateShippingDetails();
-            newShippingDetails.DeliveryTime = shippingDetailsDeliveryTIme;
-            newShippingDetails.Cost = shippingDetailsCost;
-            product.ShippingDetails = newShippingDetails;
+            if (shippingDetailsInUse)
+            {
+                ShippingDetails newShippingDetails = modelFactory.CreateShippingDetails();
+                newShippingDetails.DeliveryTime = shippingDetailsDeliveryTIme;
+                newShippingDetails.Cost = shippingDetailsCost;
+                product.ShippingDetails = newShippingDetails;
+            }
 
-            //fix this to decimal
-            Sale newSale = this.modelFactory.CreateSale();
-            newSale.PriceReduction = (int)priceReduction;
-            product.Sale = newSale;
-
-            //useless
-            //product.Seller = this.context.Sellers.Single(x => x.UserId == this.loggedUserProvider.CurrentUserId);
-
+            if (priceReduction!=-1)
+            {
+                Sale newSale = this.modelFactory.CreateSale();
+                newSale.PriceReduction = priceReduction;
+                product.Sale = newSale;
+            }
+            
             context.Products.Add(product);
             context.SaveChanges();
 

@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Online_Store.StartUp</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
@@ -99,9 +102,9 @@
     <Compile Include="Core\Services\User\UserService.cs" />
     <Compile Include="Data\IStoreContext.cs" />
     <Compile Include="Data\StoreContext.cs" />
-    <Compile Include="Migrations\201710182228467_Online_Store_Initial.cs" />
-    <Compile Include="Migrations\201710182228467_Online_Store_Initial.Designer.cs">
-      <DependentUpon>201710182228467_Online_Store_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201710190113520_init.cs" />
+    <Compile Include="Migrations\201710190113520_init.Designer.cs">
+      <DependentUpon>201710190113520_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -122,8 +125,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710182228467_Online_Store_Initial.resx">
-      <DependentUpon>201710182228467_Online_Store_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710190113520_init.resx">
+      <DependentUpon>201710190113520_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

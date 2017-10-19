@@ -22,6 +22,6 @@ namespace Online_Store.Models
         public virtual Product Product { get; set; }
 
         [Required]
-        public int PriceReduction { get; set; } //changed it to decimal
+        public decimal PriceReduction { get; set; }
     }
 }

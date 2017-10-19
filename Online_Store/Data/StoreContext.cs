@@ -1,10 +1,5 @@
 ﻿using Online_Store.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Data
 {
@@ -38,10 +33,10 @@ namespace Online_Store.Data
             //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
-                .HasRequired(t => t.ShippingDetails)
-                .WithRequiredPrincipal(t => t.Product)
-                .WillCascadeOnDelete(true);
-
+                      .HasRequired(t => t.ShippingDetails)
+                      .WithRequiredPrincipal(t => t.Product)
+                      .WillCascadeOnDelete(true);
+            
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection;
 
 namespace Online_Store.Models
 {
@@ -20,13 +19,6 @@ namespace Online_Store.Models
             this.carts = new HashSet<Cart>();
         }
 
-        public Product(string productName, decimal price, PaymentMethodEnum paymentMethod)
-        {
-            this.ProductName = productName;
-            this.Price = price;
-            this.PaymentMethod = paymentMethod;
-        }
-
         public int Id { get; set; }
 
         [Required]
@@ -35,6 +27,7 @@ namespace Online_Store.Models
         [Required]
         public decimal Price { get; set; }
 
+        [Required]
         public Nullable<DateTime> Date { get; set; }
 
         [Required]
@@ -42,13 +35,20 @@ namespace Online_Store.Models
 
         [Required]
         [ForeignKey("Seller")]
-        public int? SellerId { get; set; }
+        public int SellerId { get; set; }
 
         public virtual Seller Seller { get; set; }
 
+        //[ForeignKey("ShippingDetails")]
+        //public int ShippingDetailsId { get; set; }
+
         public virtual ShippingDetails ShippingDetails { get; set; }
 
+        [Required]
         public bool Instock { get; set; }
+
+        [ForeignKey("Sale")]
+        public int? SaleId { get; set; }
 
         public virtual Sale Sale { get; set; }
 
@@ -97,26 +97,5 @@ namespace Online_Store.Models
             
             return productAsString;
         }
-
-        //public object this[string propertyName]
-        //{
-        //    get
-        //    {
-        //        // probably faster without reflection:
-        //        // like:  return Properties.Settings.Default.PropertyValues[propertyName] 
-        //        // instead of the following
-        //        Type myType = typeof(Product);
-        //        PropertyInfo myPropInfo = myType.GetProperty(propertyName);
-        //        return myPropInfo.GetValue(this, null);
-        //    }
-        //    set
-        //    {
-        //        Type myType = typeof(Product);
-        //        PropertyInfo myPropInfo = myType.GetProperty(propertyName);
-        //        myPropInfo.SetValue(this, value, null);
-
-        //    }
-
-        //}
     }
 }

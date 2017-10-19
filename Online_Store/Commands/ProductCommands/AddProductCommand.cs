@@ -90,77 +90,115 @@ namespace Online_Store.Commands.ProductCommands
                 }
             }
 
-            string shippingDetailsCost = base.ReadOneLine("Select shipping cost: ");
+            bool answerOnShippingDetails;
+            string wannaShippingDetails = base.ReadOneLine("Will you provide shipping details [yes]/[no]? ").ToLower();
             while (true)
             {
-                try
+                if (wannaShippingDetails=="yes")
                 {
-                    decimal test = decimal.Parse(shippingDetailsCost);
-                    if (test < 0)
-                    {
-                        throw new ArgumentException("Price cannot be negative number.");
-                    }
+                    answerOnShippingDetails = true;
                     break;
                 }
-                catch
+                else if (wannaShippingDetails == "no")
                 {
-                    shippingDetailsCost = base.ReadOneLine("Invalid price, try again: ");
+                    answerOnShippingDetails = false;
+                    break;
+                }
+                else
+                {
+                    wannaShippingDetails = base.ReadOneLine("Please provide an answer [yes] or [no]? ").ToLower();
                 }
             }
 
-            string shippingDetailsDeliveryTIme = base.ReadOneLine("Select shipping delivery time in hours (integer): ");
-            while (true)
+            string shippingDetailsCost = "-1";
+            string shippingDetailsDeliveryTIme = "-1";
+            if (answerOnShippingDetails)
             {
-                try
+                shippingDetailsCost = base.ReadOneLine("Select shipping cost: ");
+                while (true)
                 {
-                    int test = int.Parse(shippingDetailsDeliveryTIme);
-                    if (test < 0)
+                    try
                     {
-                        throw new ArgumentException("Delivery time cannot be negative number.");
-                    }
-                    break;
-                }
-                catch
-                {
-                    shippingDetailsDeliveryTIme = base.ReadOneLine("Invalid delivery time, try again: ");
-                }
-            }
-
-            string saleBool = base.ReadOneLine("Is it true, this product is on sale? [true]/[false]? ").ToLower();
-            string priceReduction = "0";
-            while (true)
-            {
-                try
-                {
-                    bool isOnSale = bool.Parse(saleBool);
-                    if (isOnSale)
-                    {
-                        priceReduction = base.ReadOneLine("Enter price reduction in [%]: ");
-                        while (true)
+                        decimal test = decimal.Parse(shippingDetailsCost);
+                        if (test < 0)
                         {
-                            try
+                            throw new ArgumentException("Price cannot be negative number.");
+                        }
+                        break;
+                    }
+                    catch
+                    {
+                        shippingDetailsCost = base.ReadOneLine("Invalid price, try again: ");
+                    }
+                }
+
+                shippingDetailsDeliveryTIme = base.ReadOneLine("Select shipping delivery time in hours (integer): ");
+                while (true)
+                {
+                    try
+                    {
+                        int test = int.Parse(shippingDetailsDeliveryTIme);
+                        if (test < 0)
+                        {
+                            throw new ArgumentException("Delivery time cannot be negative number.");
+                        }
+                        break;
+                    }
+                    catch
+                    {
+                        shippingDetailsDeliveryTIme = base.ReadOneLine("Invalid delivery time, try again: ");
+                    }
+                }
+            }
+
+            bool answerOnSale;
+            string saleBool = base.ReadOneLine("Is the product on sale [yes]/[no]? ").ToLower();
+            while (true)
+            {
+                if (saleBool == "yes")
+                {
+                    answerOnSale = true;
+                    break;
+                }
+                else if (saleBool == "no")
+                {
+                    answerOnSale = false;
+                    break;
+                }
+                else
+                {
+                    saleBool = base.ReadOneLine("Please provide an answer [yes] or [no]? ").ToLower();
+                }
+            }
+
+            string priceReduction = "-1";
+            if (answerOnSale)
+            {
+                while (true)
+                {
+                    priceReduction = base.ReadOneLine("Enter price reduction in [%]: ");
+                    while (true)
+                    {
+                        try
+                        {
+                            decimal test = decimal.Parse(priceReduction);
+                            if (test < 0)
                             {
-                                decimal test = decimal.Parse(priceReduction);
-                                if (test < 0)
-                                {
-                                    throw new ArgumentException("Reduction cannot be negative number.");
-                                }
-                                break;
+                                throw new ArgumentException("Reduction cannot be negative number.");
                             }
-                            catch
-                            {
-                                priceReduction = base.ReadOneLine("Please enter the price reduction in [%]: ");
-                            }
+                            break;
+                        }
+                        catch
+                        {
+                            priceReduction = base.ReadOneLine("Please enter the price reduction in [%]: ");
                         }
                     }
                     break;
-                }
-                catch
-                {
-                    saleBool = base.ReadOneLine("Please enter [true] or [false]: ").ToLower();
+
+                    // saleBool = base.ReadOneLine("Please enter [yes] or [no]: ").ToLower();
                 }
             }
-
+            
             return new List<string>()
             {
                 productName.ToLower(),

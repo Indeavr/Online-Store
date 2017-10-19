@@ -20,14 +20,14 @@ namespace Online_Store.Ninject
     {
         public override void Load()
         {
-            this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
-            this.Bind<IReader>().To<ConsoleReader>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
-            this.Bind<IParser>().To<CommandParser>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
+            this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
+            this.Bind<IReader>().To<ConsoleReader>().InSingletonScope();
+            this.Bind<IParser>().To<CommandParser>().InSingletonScope();
 
-            this.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
-            this.Bind<IModelFactory>().To<ModelFactory>().InSingletonScope(); //no need from named bindings here // can be singleton, as long as dont accept database in constructor or method arguments
+            this.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope();
+            this.Bind<IModelFactory>().To<ModelFactory>().InSingletonScope();
 
-            this.Bind<IEngine>().To<Engine>().InSingletonScope(); //no need from named bindings here, because there is only one IEngine class // can be singleton, as long as dont accept database in constructor or method arguments
+            this.Bind<IEngine>().To<Engine>().InSingletonScope();
             this.Bind<IStoreContext>().To<StoreContext>().Named("context");
 
             this.Bind<IUserService>().To<UserService>().InSingletonScope().Named("userService");
@@ -49,7 +49,6 @@ namespace Online_Store.Ninject
             this.Bind<ICommand>().To<AddFeedbackCommand>().Named("addfeedback");
 
             this.Bind<ICommand>().To<AddProductCommand>().Named("addproduct");
-            //this.Bind<ICommand>().To<EditProductCommand>().Named("editproduct");
             this.Bind<ICommand>().To<RemoveProductCommand>().Named("removeproduct");
 
             this.Bind<ICommand>().To<EmptyCommand>().Named("emptycommand");

@@ -3,7 +3,7 @@ namespace Online_Store.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Online_Store_Initial : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -22,10 +22,11 @@ namespace Online_Store.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         ProductName = c.String(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Date = c.DateTime(),
+                        Date = c.DateTime(nullable: false),
                         PaymentMethod = c.Int(nullable: false),
                         SellerId = c.Int(nullable: false),
                         Instock = c.Boolean(nullable: false),
+                        SaleId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Sellers", t => t.SellerId, cascadeDelete: true)
@@ -86,7 +87,7 @@ namespace Online_Store.Migrations
                 c => new
                     {
                         ProductId = c.Int(nullable: false),
-                        PriceReduction = c.Int(nullable: false),
+                        PriceReduction = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ProductId)
                 .ForeignKey("dbo.Products", t => t.ProductId)

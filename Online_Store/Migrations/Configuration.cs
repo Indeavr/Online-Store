@@ -1,15 +1,8 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Online_Store.Models;
-using Online_Store.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace Online_Store.Migrations
 {
@@ -50,18 +43,18 @@ namespace Online_Store.Migrations
                 }
             }
 
-            using (StreamReader reader = new StreamReader(@"../../../UserInfo.json"))
-            {
-                if (!context.Products.Any())
-                {
-                    var json = reader.ReadToEnd();
-                    var product = JsonConvert.DeserializeObject<Product>(json);
-                    context.Sellers.Single(s => s.UserId == product.SellerId).Products.Add(product);
-                    //Console.WriteLine(context.Sellers.Single(s => s.UserId == product.SellerId).Products.First().Price);
-                    context.Products.Add(product);
-                    context.SaveChanges();
-                }
-            }
+            //using (StreamReader reader = new StreamReader(@"../../../UserInfo.json"))
+            //{
+            //    if (!context.Products.Any())
+            //    {
+            //        var json = reader.ReadToEnd();
+            //        var product = JsonConvert.DeserializeObject<Product>(json);
+            //        context.Sellers.Single(s => s.UserId == product.SellerId).Products.Add(product);
+            //        //Console.WriteLine(context.Sellers.Single(s => s.UserId == product.SellerId).Products.First().Price);
+            //        context.Products.Add(product);
+            //        context.SaveChanges();
+            //    }
+            //}
 
             //using (StreamReader r = new StreamReader(@"../../../Product.xml"))
             //{
