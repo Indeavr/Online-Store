@@ -79,6 +79,7 @@
     <Compile Include="Core\Services\ProductServiceTests\ListAllProducts_Should.cs" />
     <Compile Include="Core\Services\ProductServiceTests\ListProductsByCategory_Should.cs" />
     <Compile Include="Core\Services\ProductServiceTests\RemoveProductWithId_Should.cs" />
+    <Compile Include="Core\Services\User\UserServiceTests\AddToCart_Should.cs" />
     <Compile Include="Core\Services\User\UserServiceTests\CheckPassword_Should.cs" />
     <Compile Include="Core\Services\User\UserServiceTests\CheckUsername_Should.cs" />
     <Compile Include="Core\Services\User\UserServiceTests\GeneratePasswordHash_Should.cs" />
