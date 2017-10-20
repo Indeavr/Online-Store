@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Online_Store.Core.Factories;
 using Online_Store.Core.Providers;
 using Online_Store.Core.Services;
 using Online_Store.Core.Services.User;
@@ -17,9 +18,12 @@ namespace Online_Store_Tests.Core.Services.User.UserServiceTests
             var hasherMock = new Mock<IPasswordSecurityHasher>();
             var contextMock = new Mock<IStoreContext>();
             var loggedUserMock = new Mock<ILoggedUserProvider>();
+            var factoryMock = new Mock<IModelFactory>();
+
             string password = "test";
 
-            var userService = new UserService(hasherMock.Object, contextMock.Object, loggedUserMock.Object);
+            var userService = new UserService(hasherMock.Object, contextMock.Object, loggedUserMock.Object,
+                factoryMock.Object);
 
             ////Act
             userService.GeneratePasswordHash(password);

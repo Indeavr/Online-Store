@@ -34,56 +34,12 @@ namespace Online_Store.Commands.CartCommands
         {
             if (!this.userService.IsUserLogged())
             {
-                return "You must login first!";
+                return "You must Login First!";
             }
 
             IList<string> parameters = TakeInput();
 
-            Product product = this.factory.CreateProduct();
-            string productIdStr = parameters[0];
-            if (productIdStr == null)
-            {
-                try
-                {
-                    string nameInput = parameters[1];
-                    product = base.context.Products.Single(p => p.ProductName == nameInput);
-                }
-                catch (Exception)
-                {
-                    return "There is no product with this Name!";
-                }
-            }
-            else if (parameters[1] == null)
-            {
-                int productIdInput;
-                try
-                {
-                    productIdInput = int.Parse(productIdStr);
-                }
-                catch (Exception)
-                {
-                    return "ID must be a Number!";
-                }
-
-                try
-                {
-                    product = base.context.Products.Single(p => p.Id == productIdInput);
-                }
-                catch (Exception)
-                {
-                    return "There is no product with this ID!";
-                }
-            }
-
-            this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
-                            .Cart.Products.Add(product);
-
-            //Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
-            //    .Cart.Products.Count);
-
-            this.context.SaveChanges();
-
-            return $"Product successfully added to cart";
+            return this.userService.AddToCart(parameters);
         }
 
         private IList<string> TakeInput()

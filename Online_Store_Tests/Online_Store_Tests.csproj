@@ -62,6 +62,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CartCommands\AddToCartCommandTests\Execute_Should.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommandTests\Constructor_Should.cs" />
     <Compile Include="Commands\ProductCommands\ListAllProductsCommandTests\Constructor_Should.cs" />
     <Compile Include="Commands\ProductCommands\ListFeedbacksForProductsCommandTests\Constructor_Should.cs" />
