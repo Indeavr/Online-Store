@@ -11,16 +11,12 @@ namespace Online_Store.Models
             this.products = new HashSet<Product>();
         }
 
-//<<<<<<< HEAD
        // public int Id { get; set; }
         
-//=======
-        //[Key, ForeignKey("User")]
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
 
-//>>>>>>> origin/master
         public virtual ICollection<Product> Products
         {
             get

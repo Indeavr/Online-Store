@@ -78,7 +78,7 @@ namespace Online_Store_Tests.Core.Services.UserTests.UserServiceTests
             userService.AddToCart(parameters);
 
             // Assert
-            contextMock.Verify(m => m.Users.Single(u => u.Id == 1).Cart.Products.Add(It.IsAny<Product>()), Times.Once);
+             contextMock.Verify(m => m.Users.Single(u => u.Id == 1).Cart.Products.Add(It.IsAny<Product>()), Times.Once);
         }
     }
 }

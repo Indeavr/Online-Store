@@ -46,7 +46,7 @@ namespace Online_Store.Core.Services
             {
                 return true;
             }
-          
+
             if (!CheckUsername(username))
             {
                 throw new Exception("Wrong Username");
@@ -134,8 +134,8 @@ namespace Online_Store.Core.Services
             this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
                             .Cart.Products.Add(product);
 
-            //Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
-            //    .Cart.Products.Count);
+            Console.WriteLine(this.context.Users.Single(u => u.Id == this.loggedUserProvider.CurrentUserId)
+                .Cart.Products.Count);
 
             this.context.SaveChanges();
 
