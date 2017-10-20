@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Online_Store.Core.Providers;
+using Online_Store.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Online_Store.Core.Providers;
-using Online_Store.Data;
 
 namespace Online_Store.Commands.FeedbackCommands
 {

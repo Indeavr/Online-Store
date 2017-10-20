@@ -63,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CartCommands\AddToCartCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\FeedbackCommands\AddFeedbackCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\FeedbackCommands\AddFeedbackCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\FeedbackCommands\EditCommentCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\FeedbackCommands\EditCommentCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\FeedbackCommands\ListFeedbacksCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\FeedbackCommands\ListFeedbacksCommandTests\Execute_Should.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommandTests\Constructor_Should.cs" />
     <Compile Include="Commands\ProductCommands\ListAllProductsCommandTests\Constructor_Should.cs" />
     <Compile Include="Commands\ProductCommands\ListFeedbacksForProductsCommandTests\Constructor_Should.cs" />
