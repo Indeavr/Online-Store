@@ -1,9 +1,13 @@
 using Newtonsoft.Json;
 using Online_Store.Models;
+using Online_Store.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Online_Store.Migrations
 {
@@ -30,27 +34,31 @@ namespace Online_Store.Migrations
             //    );
             //
 
-            //<<<<<<< HEAD
             using (StreamReader usersStream = new StreamReader(@"../../../json/Users.json"))
             {
                 IList<User> users = JsonConvert.DeserializeObject<IList<User>>(usersStream.ReadToEnd());
-                if (context.Users.Count() == 0)
+
+                for (int i = 0; i <= users.Count - 1; i++)
                 {
-                    for (int i = 0; i <= users.Count - 1; i++)
+                    if (i % 2 == 0)
                     {
-                        if (i % 2 == 0)
+                        User user = users[i];
+                        user.Seller = new Seller();
+                        if (!context.Users.Any(x => x.Username == user.Username))
                         {
-                            User user = users[i];
-                            user.Seller = new Seller();
                             context.Users.Add(user);
                         }
-                        else
+                    }
+                    else
+                    {
+                        User user = users[i];
+                        if (!context.Users.Any(x => x.Username == user.Username))
                         {
                             context.Users.Add(users[i]);
                         }
                     }
-                    context.SaveChanges();
                 }
+                context.SaveChanges();
             }
 
             using (StreamReader r = new StreamReader(@"../../../json/User.json"))
@@ -65,23 +73,13 @@ namespace Online_Store.Migrations
                     context.SaveChanges();
                 }
             }
-            //using (StreamReader cartReader = new StreamReader(@"../../../json/Cart.json"))
-            //{
-            //    if (!context.Carts.Any(x => x.UserId == 2)) //throws exeption when there is no user with ID=2 => should be if (context.Carts.ToList().Count != 0)
-            //    {
-            //        string json = cartReader.ReadToEnd();
-            //        var cart = JsonConvert.DeserializeObject<Cart>(json);
-            //        context.Carts.Add(cart);
-            //        context.SaveChanges(); //exception when there is no user with ID=1
-            //    }
-            //}
 
-            if (context.Carts.ToList().Count==0)
+            if (context.Carts.ToList().Count == 0)
             {
                 context.Carts.Add(new Cart() { UserId = context.Users.First().Id }); //only exceptionless way for now to add a cart
                 context.SaveChanges();
-            }
-            
+            } //to try to foreach each
+
             using (StreamReader productsStream = new StreamReader(@"../../../json/Products.json"))
             {
                 if (context.Products.Count() == 0)
@@ -101,7 +99,7 @@ namespace Online_Store.Migrations
 
             using (StreamReader reader = new StreamReader(@"../../../json/Feedback.json"))
             {
-                if (!context.Feedbacks.Any())
+                if (!context.Feedbacks.Any()) //v momenta se vika nikoga
                 {
                     string json = reader.ReadToEnd();
                     var feedback = JsonConvert.DeserializeObject<Feedback>(json);
@@ -109,10 +107,10 @@ namespace Online_Store.Migrations
                     context.SaveChanges();
                 }
             }
-            
+
             using (StreamReader reader = new StreamReader(@"../../../json/ShippingDetails.json"))
             {
-                if (!context.ShippingDetails.Any())
+                if (!context.ShippingDetails.Any()) //v momenta se vika nikoga
                 {
                     string json = reader.ReadToEnd();
                     var shippingDetails = JsonConvert.DeserializeObject<ShippingDetails>(json);
@@ -121,6 +119,90 @@ namespace Online_Store.Migrations
                 }
             }
 
+            using (StreamReader reader = new StreamReader(@"../../../xml/users.xml"))
+            {
+                var xmlUsers = XElement.Load(reader);
+
+                var users = xmlUsers.Elements("user").Select(x =>
+                {
+                    return new User()
+                    {
+                        Username = x.Element("username").Value,
+                        Password = x.Element("password").Value
+                    };
+                });
+
+                foreach (User user in users)
+                {
+                    if (!context.Users.Any(x => x.Username == user.Username))
+                    {
+                        context.Users.Add(user);
+                    }
+                }
+            }
+
+            using (StreamReader reader = new StreamReader(@"../../../xml/products.xml"))
+            {
+                var xmlUsers = XElement.Load(reader);
+
+                var products = xmlUsers.Elements("product").Select(x =>
+                {
+                    return new Product()
+                    {
+                        SellerId = context.Sellers.First().UserId,
+                        ProductName = x.Element("ProductName").Value,
+                        Price = decimal.Parse(x.Element("Price").Value),
+                        Date = DateTime.Now,
+                        PaymentMethod = (PaymentMethodEnum)Enum.Parse(typeof(PaymentMethodEnum), x.Element("PaymentMethod").Value, true),
+                        Sale = new Sale()
+                        {
+                            PriceReduction = decimal.Parse(x.Element("Sale").Element("PriceReduction").Value)
+                        },
+                        ShippingDetails = new ShippingDetails()
+                        {
+                            DeliveryTime = int.Parse(x.Element("ShippingDetails").Element("DeliveryTime").Value),
+                            Cost = decimal.Parse(x.Element("ShippingDetails").Element("Cost").Value)
+                        },
+                        Instock = bool.Parse(x.Element("Instock").Value),
+                        Categories = new List<Category>()
+                        {
+                            new Category()
+                            {
+                                CategoryName = x.Elements("Categories").First().Element("CategoryName").Value
+                            },
+                            new Category()
+                            {
+                                CategoryName = x.Elements("Categories").Last().Element("CategoryName").Value
+                            }
+                        },
+                        Feedbacks = new List<Feedback>()
+                        {
+                            new Feedback()
+                            {
+                                Comment = x.Elements("Feedbacks").First().Element("Comment").Value,
+                                Rating = int.Parse(x.Elements("Feedbacks").First().Element("Rating").Value),
+                                Date = DateTime.Now,
+                                SellerId = context.Sellers.First().UserId,
+                            },
+                            new Feedback()
+                            {
+                                Comment = x.Elements("Feedbacks").Last().Element("Comment").Value,
+                                Date = DateTime.Now,
+                                SellerId = context.Sellers.First().UserId,
+                            }
+                        }
+                        
+                    };
+                });
+
+                foreach (Product product in products)
+                {
+                    if (!context.Products.Any(x => x.ProductName == product.ProductName))
+                    {
+                        context.Products.Add(product);
+                    }
+                }
+            }
         }
     }
 }

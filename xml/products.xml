@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-	<0>
+	<encapsulator>
+	<product>
 		<ProductName>golf 2</ProductName>
 		<Price>1200.00</Price>
 		<Date>2017-10-18 18:33:11.290</Date>
-		<PaymentMethod>1</PaymentMethod>
+		<PaymentMethod>cash</PaymentMethod>
 		<Sale>
 			<PriceReduction>2.1</PriceReduction>
 		</Sale>
@@ -16,9 +17,6 @@
 			<CategoryName>sportni koli</CategoryName>
 		</Categories>
 		<Categories>
-			<CategoryName>pernik</CategoryName>
-		</Categories>
-		<Categories>
 			<CategoryName>vinkeli</CategoryName>
 		</Categories>
 		<Feedbacks>
@@ -28,12 +26,12 @@
 		<Feedbacks>
 			<Comment>zimash i palish</Comment>
 		</Feedbacks>
-	</0>
-	<1>
+	</product>
+	<product>
 		<ProductName>disk na veselin marinov</ProductName>
 		<Price>10000</Price>
 		<Date>2017-10-18 18:33:11.290</Date>
-		<PaymentMethod>3</PaymentMethod>
+		<PaymentMethod>kidney</PaymentMethod>
 		<Sale>
 			<PriceReduction>1.88</PriceReduction>
 		</Sale>
@@ -55,12 +53,12 @@
 		<Feedbacks>
 			<Comment>produktyt dyrji svetovniq rekord rekord po hvyrlqne na disks</Comment>
 		</Feedbacks>
-	</1>
-	<2>
+	</product>
+	<product>
 		<ProductName>sandali s 4orapi</ProductName>
 		<Price>24.99</Price>
 		<Date>2017-10-18 18:33:11.290</Date>
-		<PaymentMethod>1</PaymentMethod>
+		<PaymentMethod>vpay</PaymentMethod>
 		<Sale>
 			<PriceReduction>13.00</PriceReduction>
 		</Sale>
@@ -72,6 +70,9 @@
 		<Categories>
 			<CategoryName>modern fashion</CategoryName>
 		</Categories>
+		<Categories>
+			<CategoryName>obleklo za intervu za rabota</CategoryName>
+		</Categories>
 		<Feedbacks>
 			<Comment>seki den hodq taka na rabota</Comment>
 			<Rating>9</Rating>
@@ -79,5 +80,5 @@
 		<Feedbacks>
 			<Comment>edin priqtel go naeha v ofis na microsoft v london, za6toto na intervuto bil sys sandali s 4orapi</Comment>
 		</Feedbacks>
-	</2>
-	
+	</product>
+	</encapsulator>

@@ -27,11 +27,11 @@ namespace Online_Store.Data
                 .WithRequiredPrincipal(t => t.Product)
                 .WillCascadeOnDelete(true);
 
-            modelBuilder.Entity<Cart>()
-                .HasKey(c => c.UserId);
+            //modelBuilder.Entity<Cart>()
+            //    .HasKey(c => c.UserId);
 
-            modelBuilder.Entity<Cart>()
-                .HasRequired(t => t.User);
+            //modelBuilder.Entity<Cart>()
+            //    .HasRequired(t => t.User);
 
             modelBuilder.Entity<Feedback>()
                 .HasOptional(x => x.Product);
