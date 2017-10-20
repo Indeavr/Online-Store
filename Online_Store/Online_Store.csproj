@@ -44,6 +44,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -97,6 +100,7 @@
     <Compile Include="Core\Providers\IReader.cs" />
     <Compile Include="Core\Providers\IWriter.cs" />
     <Compile Include="Core\Providers\LoggedUserProvider.cs" />
+    <Compile Include="Core\ReportGenerators\PdfGenerator.cs" />
     <Compile Include="Core\Services\ProductService\IProductService.cs" />
     <Compile Include="Core\Services\ProductService\ProductService.cs" />
     <Compile Include="Core\Services\User\IPasswordSecurityHasher.cs" />
