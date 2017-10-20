@@ -41,7 +41,7 @@ namespace Online_Store.Commands.UserCommands
             userService.ValidateCredentials(username, password);
 
             this.loggedUserProvider.CurrentUserId = this.context.Users.Single(u => u.Username == username).Id;
-            Console.WriteLine(this.loggedUserProvider.CurrentUserId);
+            // Console.WriteLine(this.loggedUserProvider.CurrentUserId);
 
             return $"Successfully Logged in!";
         }

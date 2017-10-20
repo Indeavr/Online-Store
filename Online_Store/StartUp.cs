@@ -3,6 +3,7 @@ using Online_Store.Core;
 using Online_Store.Data;
 using Online_Store.Migrations;
 using Online_Store.Ninject;
+using Online_Store.ReportGenerators;
 using System.Data.Entity;
 using System.Linq;
 
@@ -13,10 +14,14 @@ namespace Online_Store
         public static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StoreContext, Configuration>());
-            using (var context = new StoreContext())
-            {
-                var databaseMaterialization = context.Users.ToList();
-            }
+            //using (var context = new StoreContext())
+            //{
+            //   // var databaseMaterialization = context.Users.ToList();
+
+            //    var gen = new PdfGenerators();
+            //    gen.GeneratePdf(context, "../", "NAMEPDF.pdf");
+            //}
+
 
             IKernel kernel = new StandardKernel(new StoreModule());
 
