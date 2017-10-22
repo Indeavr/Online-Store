@@ -12,7 +12,7 @@ namespace Online_Store.Commands.EmptyCommand
 
         public override string Execute()
         {
-            return "Command doesn`t exist.";
+            return "Command doesn`t exist. Type [help] for list of currently supported commands.";
         }
     }
 }

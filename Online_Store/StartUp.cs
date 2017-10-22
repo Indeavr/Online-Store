@@ -14,13 +14,13 @@ namespace Online_Store
         public static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<StoreContext, Configuration>());
-            //using (var context = new StoreContext())
-            //{
-            //   // var databaseMaterialization = context.Users.ToList();
+            using (var context = new StoreContext())
+            {
+                var databaseMaterialization = context.Users.ToList();
 
-            //    var gen = new PdfGenerators();
-            //    gen.GeneratePdf(context, "../", "NAMEPDF.pdf");
-            //}
+                //var gen = new PdfGenerators();
+                //gen.GeneratePdf(context, "../", "NAMEPDF.pdf");
+            }
 
 
             IKernel kernel = new StandardKernel(new StoreModule());

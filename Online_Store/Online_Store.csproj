@@ -71,9 +71,9 @@
     <Compile Include="Commands\FeedbackCommands\AddFeedbackCommand.cs" />
     <Compile Include="Commands\FeedbackCommands\EditCommentCommand.cs" />
     <Compile Include="Commands\FeedbackCommands\ListFeedbacksCommand.cs" />
+    <Compile Include="Commands\HelpCommand\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ProductCommands\AddProductCommand.cs" />
-    <Compile Include="Commands\ProductCommands\EditProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\ListAllProductsCommand.cs" />
     <Compile Include="Commands\ProductCommands\ListFeedbacksForProductCommand.cs" />
     <Compile Include="Commands\ProductCommands\ListProductsByCategoryCommand.cs" />
